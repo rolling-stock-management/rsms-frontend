@@ -1,6 +1,8 @@
 <template>
   <div>
-    <Nuxt />
+    <b-container class="my-3">
+      <Nuxt />
+    </b-container>
   </div>
 </template>
 
