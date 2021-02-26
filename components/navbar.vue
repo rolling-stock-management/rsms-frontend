@@ -18,7 +18,11 @@
         <b-nav-item v-if="guest" to="register" exact exact-active-class="active"
           >Регистрация</b-nav-item
         >
-        <b-nav-item v-if="loggedIn" to="login" exact exact-active-class="active"
+        <b-nav-item
+          v-if="loggedIn"
+          to="/dashboard"
+          exact
+          exact-active-class="active"
           >Табло за управление</b-nav-item
         >
         <b-nav-item v-if="loggedIn" @click="logOut"
@@ -31,19 +35,19 @@
 
 <script>
 export default {
-  methods: {
-    async logOut() {
-      // TODO: Alert for testing purposes
-      alert('logging out')
-      await this.$auth.logout()
-    },
-  },
   computed: {
     guest() {
       return !this.$auth.loggedIn
     },
     loggedIn() {
       return this.$auth.loggedIn
+    },
+  },
+  methods: {
+    async logOut() {
+      // TODO: Alert for testing purposes
+      alert('logging out')
+      await this.$auth.logout()
     },
   },
 }

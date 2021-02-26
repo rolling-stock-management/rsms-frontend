@@ -7,7 +7,7 @@
       <ul class="nav flex-column">
         <li class="nav-item">
           <b-link
-            to="dashboard"
+            to="/dashboard"
             class="nav-link"
             exact
             exact-active-class="active"
@@ -15,8 +15,12 @@
           >
         </li>
         <li class="nav-item">
-          <b-link to="test" class="nav-link" exact exact-active-class="active"
-            >Test</b-link
+          <b-link
+            to="/dashboard/depots"
+            class="nav-link"
+            exact
+            exact-active-class="active"
+            >Депа</b-link
           >
         </li>
       </ul>
