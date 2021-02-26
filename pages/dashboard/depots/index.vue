@@ -28,7 +28,22 @@
           <tr v-for="(depot, id) in depots" :key="id">
             <td>{{ depot.data.id }}</td>
             <td>{{ depot.data.name }}</td>
-            <td class="text-break">{{ depot.data.note }}</td>
+            <td :id="'tooltip-target-' + depot.data.id">
+              {{
+                depot.data.note
+                  ? depot.data.note.length > 20
+                    ? depot.data.note.substr(0, 20).concat('...')
+                    : depot.data.note
+                  : '-'
+              }}
+              <b-tooltip
+                v-if="depot.data.note.length > 20"
+                :target="'tooltip-target-' + depot.data.id"
+                triggers="hover"
+              >
+                {{ depot.data.note }}
+              </b-tooltip>
+            </td>
             <td>{{ depot.data.last_updated }}</td>
             <td>
               <div class="d-flex justify-content-end">
