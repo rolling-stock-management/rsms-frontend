@@ -20,6 +20,7 @@ export default {
     sidebar,
     navbar,
   },
+  middleware: 'auth',
 }
 </script>
 
