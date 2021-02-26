@@ -4,22 +4,13 @@
       class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
     >
       <h4>Списък на всички депа</h4>
-      <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group mr-2">
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-            Share
-          </button>
-          <button type="button" class="btn btn-sm btn-outline-secondary">
-            Export
-          </button>
-        </div>
-        <button
+      <div class="mb-2 mb-md-0">
+        <b-button
           type="button"
-          class="btn btn-sm btn-outline-secondary dropdown-toggle"
+          to="/dashboard/depots/create"
+          variant="outline-success"
+          >Добавяне</b-button
         >
-          <span data-feather="calendar"></span>
-          This week
-        </button>
       </div>
     </div>
     <div class="table-responsive">
@@ -40,7 +31,7 @@
             <td class="text-break">{{ depot.data.note }}</td>
             <td>{{ depot.data.last_updated }}</td>
             <td>
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-end">
                 <b-button variant="outline-primary" class="mx-1"
                   >Промяна</b-button
                 >
@@ -51,6 +42,14 @@
         </tbody>
       </table>
     </div>
+    <div class="overflow-auto d-flex justify-content-between">
+      <b-pagination-nav
+        :link-gen="linkGen"
+        :number-of-pages="pagination.totalPages"
+        use-router
+      ></b-pagination-nav>
+      <p>Общо записи: {{ depotsCount }}</p>
+    </div>
   </div>
 </template>
 
@@ -59,9 +58,10 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'dashboard',
-  async fetch({ store, error }) {
+  async fetch({ store, error, query }) {
     try {
-      await store.dispatch('depots/fetchDepots')
+      const page = query.page ? query.page : 1
+      await store.dispatch('depots/fetchDepots', page)
     } catch (e) {
       error({
         statusCode: 503,
@@ -71,7 +71,15 @@ export default {
     }
   },
   computed: mapState({
-    depots: (state) => state.depots.depots.data,
+    depots: (state) => state.depots.depots,
+    depotsCount: (state) => state.depots.depotsCount,
+    pagination: (state) => state.depots.pagination,
   }),
+  watchQuery: ['page'],
+  methods: {
+    linkGen(pageNum) {
+      return pageNum === 1 ? '?' : `?page=${pageNum}`
+    },
+  },
 }
 </script>
