@@ -12,6 +12,9 @@ export default function ({ $axios }, inject) {
     updateDepot(id, form) {
       return $axios.patch('/depots/' + id, form)
     },
+    deleteDepot(id) {
+      return $axios.delete('depots/' + id)
+    },
   }
 
   inject('DepotService', DepotService)

@@ -66,6 +66,11 @@ export const actions = {
         commit('UPDATE_DEPOT', data)
       })
   },
+  deleteDepot({ commit, dispatch, state }, id) {
+    return this.$DepotService.deleteDepot(id).then((response) => {
+      dispatch('fetchDepots', state.pagination.currentPage)
+    })
+  },
 }
 export const getters = {
   getDepotById: (state) => (id) => {

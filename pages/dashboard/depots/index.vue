@@ -53,7 +53,11 @@
                   :to="'/dashboard/depots/' + depot.data.id + '/update'"
                   >Промяна</b-button
                 >
-                <b-button variant="outline-danger">Изтриване</b-button>
+                <b-button
+                  variant="outline-danger"
+                  :to="'/dashboard/depots/' + depot.data.id + '/delete'"
+                  >Изтриване</b-button
+                >
               </div>
             </td>
           </tr>
