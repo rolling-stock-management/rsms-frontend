@@ -16,7 +16,6 @@
           id="inputNote"
           v-model="form.note"
           placeholder="Въведете въведете допълнителна информация (незадължително)..."
-          required
         ></b-form-input>
       </b-form-group>
       <div class="d-flex justify-content-between">
