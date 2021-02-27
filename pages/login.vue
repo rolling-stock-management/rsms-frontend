@@ -1,6 +1,9 @@
 <template>
   <b-row class="justify-content-md-center">
     <b-col col lg="6">
+      <div v-if="errors">
+        <b-alert show variant="danger">{{ errors.message }}</b-alert>
+      </div>
       <b-card header="Влизане">
         <b-form @submit="userLogin">
           <b-form-group id="email" label="Email адрес:" label-for="email">
@@ -39,25 +42,25 @@ export default {
         email: '',
         password: '',
       },
+      errors: null,
     }
   },
   methods: {
     async userLogin(evt) {
       evt.preventDefault()
       try {
-        this.$auth.loginWith('laravelSanctum', {
+        await this.$auth.loginWith('laravelSanctum', {
           data: {
             email: this.form.email,
             password: this.form.password,
           },
         })
-        this.$router.push('/')
-
+        this.$router.push('/dashboard')
         // Get something from protected route.
-        const response = await this.$axios.$get('user')
-        console.log(response)
+        // const response = await this.$axios.$get('user')
+        // console.log(response)
       } catch (err) {
-        console.log(err)
+        this.errors = err.response.data
       }
     },
   },
