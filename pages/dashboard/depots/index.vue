@@ -47,7 +47,10 @@
             <td>{{ depot.data.last_updated }}</td>
             <td>
               <div class="d-flex justify-content-end">
-                <b-button variant="outline-primary" class="mx-1"
+                <b-button
+                  variant="outline-primary"
+                  class="mx-1"
+                  :to="'/dashboard/depots/' + depot.data.id + '/update'"
                   >Промяна</b-button
                 >
                 <b-button variant="outline-danger">Изтриване</b-button>

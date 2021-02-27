@@ -20,9 +20,11 @@ export const mutations = {
   ADD_DEPOT(state, depot) {
     state.depots.push(depot)
   },
-  UPDATE_DEPOT(depot) {
-    const depotIndex = state.depots.findIndex(({ id }) => id === depot.id)
-    this.$set(state.depots, depotIndex, depot)
+  UPDATE_DEPOT(state, depot) {
+    const depotIndex = state.depots.findIndex((element) => {
+      return element.data.id === depot.id
+    })
+    this._vm.$set(state.depots, depotIndex, depot)
   },
 }
 export const actions = {
@@ -54,6 +56,15 @@ export const actions = {
       commit('SET_DEPOT', data)
       commit('ADD_DEPOT', data)
     })
+  },
+  updateDepot({ commit }, formData) {
+    return this.$DepotService
+      .updateDepot(formData.id, formData.form)
+      .then((response) => {
+        const data = response.data.data
+        commit('SET_DEPOT', data)
+        commit('UPDATE_DEPOT', data)
+      })
   },
 }
 export const getters = {
