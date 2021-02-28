@@ -37,7 +37,7 @@
                   : '-'
               }}
               <b-tooltip
-                v-if="depot.data.note.length > 20"
+                v-if="depot.data.note != null && depot.data.note.length > 20"
                 :target="'tooltip-target-' + depot.data.id"
                 triggers="hover"
               >
