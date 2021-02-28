@@ -21,6 +21,10 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'dashboard',
+  middleware: 'hasPermission',
+  meta: {
+    auth: { permission: 'depot-delete' },
+  },
   async fetch({ store, error, params }) {
     try {
       await store.dispatch('depots/fetchDepotById', params.id)

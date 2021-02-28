@@ -34,6 +34,10 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'dashboard',
+  middleware: 'hasPermission',
+  meta: {
+    auth: { permission: 'depot-update' },
+  },
   data() {
     return {
       form: {

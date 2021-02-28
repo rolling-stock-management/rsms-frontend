@@ -80,6 +80,10 @@ import { mapState } from 'vuex'
 
 export default {
   layout: 'dashboard',
+  middleware: 'hasPermission',
+  meta: {
+    auth: { permission: 'depot-viewAny' },
+  },
   async fetch({ store, error, query }) {
     try {
       const page = query.page ? query.page : 1
