@@ -11,6 +11,8 @@
             class="nav-link"
             exact
             exact-active-class="active"
+            v-b-toggle.nav-collapse
+            @click.prevent
             >Dashboard</b-link
           >
         </li>
@@ -20,6 +22,8 @@
             class="nav-link"
             exact
             exact-active-class="active"
+            v-b-toggle.nav-collapse
+            @click.prevent
             >Депа</b-link
           >
         </li>
