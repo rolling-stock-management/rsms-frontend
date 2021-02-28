@@ -77,6 +77,7 @@ export default {
         },
       },
     },
+    plugins: ['~/plugins/UserRolePermissionPlugin'],
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

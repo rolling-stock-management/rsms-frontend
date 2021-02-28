@@ -8,45 +8,50 @@
         <li class="nav-item">
           <b-link
             to="/dashboard"
+            v-b-toggle.nav-collapse
             class="nav-link"
             exact
             exact-active-class="active"
-            v-b-toggle.nav-collapse
             @click.prevent
             >Dashboard</b-link
           >
         </li>
-        <li class="nav-item">
-          <b-link
-            to="/dashboard/depots"
-            class="nav-link"
-            exact
-            exact-active-class="active"
-            v-b-toggle.nav-collapse
-            @click.prevent
-            >Депа</b-link
-          >
-        </li>
       </ul>
-
-      <h6
-        class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
-      >
-        <span>Saved reports</span>
-      </h6>
-      <ul class="nav flex-column mb-2">
-        <li class="nav-item">
-          <b-link to="test" class="nav-link" exact exact-active-class="active"
-            >Test</b-link
-          >
-        </li>
-      </ul>
+      <div v-if="userHasRole('administrator')">
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        >
+          <span>Администратор</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li v-if="userHasPermission('depot-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/depots"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Депа</b-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </b-collapse>
 </template>
 
 <script>
-export default {}
+export default {
+  methods: {
+    userHasPermission(permission) {
+      return this.$UserRolePermissionPlugin.userHasPermission(permission)
+    },
+    userHasRole(role) {
+      return this.$UserRolePermissionPlugin.userHasRole(role)
+    },
+  },
+}
 </script>
 
 <style scoped>
