@@ -1,6 +1,23 @@
 <template>
   <b-row class="justify-content-md-center">
     <b-col col lg="6">
+      <div v-if="error">
+        <b-alert show variant="danger">
+          <p>{{ error.message }}</p>
+          <p
+            v-for="(email_err, email_id) in error.errors.email"
+            :key="email_id"
+          >
+            {{ email_err }}
+          </p>
+          <p
+            v-for="(password_err, password_id) in error.errors.password"
+            :key="password_id"
+          >
+            {{ password_err }}
+          </p>
+        </b-alert>
+      </div>
       <b-card header="Регистрация">
         <b-form @submit="userRegister">
           <b-form-group id="name" label="Потребителско име:" label-for="email">
@@ -70,18 +87,24 @@ export default {
         password: '',
         password_confirmation: '',
       },
+      error: null,
     }
   },
   methods: {
     async userRegister(evt) {
       evt.preventDefault()
       try {
-        await this.$axios.$get('sanctum/csrf-cookie').then((response) => {})
-        await this.$axios.$post('/register', this.form).then((response) => {
-          console.log(response)
+        await this.$axios.$get('sanctum/csrf-cookie')
+        await this.$axios.$post('/register', this.form)
+        await this.$auth.loginWith('laravelSanctum', {
+          data: {
+            email: this.form.email,
+            password: this.form.password,
+          },
         })
+        this.$router.push('/dashboard')
       } catch (err) {
-        console.log(err)
+        this.error = err.response.data
       }
     },
   },
