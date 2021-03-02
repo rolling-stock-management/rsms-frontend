@@ -2,7 +2,7 @@ export default function ({ $auth }, inject) {
   const UserRolePermissionPlugin = {
     userHasPermission(permission) {
       // Get the users roles; for each one get the permissions and add them to an array.
-      const roles = $auth.user[0].roles
+      const roles = $auth.user.roles
       let permissions = []
       roles.forEach((role) => {
         permissions = permissions.concat(role.permissions)
@@ -15,7 +15,7 @@ export default function ({ $auth }, inject) {
       return permissionIndex !== -1
     },
     userHasRole(role) {
-      const roles = $auth.user[0].roles
+      const roles = $auth.user.roles
       const roleIndex = roles.findIndex((element) => {
         return element.name === role
       })
