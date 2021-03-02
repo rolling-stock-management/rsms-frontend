@@ -21,6 +21,7 @@ export default {
     '~/plugins/DepotService.js',
     '~/plugins/RoleService.js',
     '~/plugins/PermissionService.js',
+    '~/plugins/UserService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
