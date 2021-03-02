@@ -3,6 +3,9 @@ export default function ({ $axios }, inject) {
     getDepots(page) {
       return $axios.get('/depots?page=' + page)
     },
+    getDepotsNoPagination() {
+      return $axios.get('/depots?no-pagination=1')
+    },
     getDepot(id) {
       return $axios.get('/depots/' + id)
     },

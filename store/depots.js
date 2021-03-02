@@ -33,6 +33,11 @@ export const actions = {
       commit('SET_DEPOTS', response.data)
     })
   },
+  fetchDepotsNoPagination({ commit }) {
+    return this.$DepotService.getDepots().then((response) => {
+      commit('SET_DEPOTS', response.data)
+    })
+  },
   fetchDepotById({ commit, getters, state }, id) {
     if (id === state.depot.id) {
       return state.depot
