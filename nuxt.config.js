@@ -17,7 +17,11 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/DepotService.js'],
+  plugins: [
+    '~/plugins/DepotService.js',
+    '~/plugins/RoleService.js',
+    '~/plugins/PermissionService.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
