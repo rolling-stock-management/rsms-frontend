@@ -37,6 +37,37 @@
           </li>
         </ul>
       </div>
+      <div v-if="userHasRole('administrator')">
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        >
+          <span>Потребители</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li v-if="userHasPermission('user-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/users"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Потребители</b-link
+            >
+          </li>
+          <li v-if="userHasPermission('role-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/roles"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Роли</b-link
+            >
+          </li>
+        </ul>
+      </div>
     </div>
   </b-collapse>
 </template>
