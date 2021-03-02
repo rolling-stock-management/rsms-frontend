@@ -49,6 +49,14 @@
         </tbody>
       </table>
     </div>
+    <div class="overflow-auto d-flex justify-content-between">
+      <b-pagination-nav
+        :link-gen="linkGen"
+        :number-of-pages="pagination.totalPages"
+        use-router
+      ></b-pagination-nav>
+      <p>Общо записи: {{ usersCount }}</p>
+    </div>
   </div>
 </template>
 
@@ -61,9 +69,10 @@ export default {
   meta: {
     auth: { permission: 'user-viewAny' },
   },
-  async fetch({ store, error }) {
+  async fetch({ store, error, query }) {
     try {
-      await store.dispatch('users/fetchUsers')
+      const page = query.page ? query.page : 1
+      await store.dispatch('users/fetchUsers', page)
     } catch (e) {
       error({
         statusCode: 503,
@@ -74,6 +83,14 @@ export default {
   },
   computed: mapState({
     users: (state) => state.users.users,
+    usersCount: (state) => state.users.usersCount,
+    pagination: (state) => state.users.pagination,
   }),
+  watchQuery: ['page'],
+  methods: {
+    linkGen(pageNum) {
+      return pageNum === 1 ? '?' : `?page=${pageNum}`
+    },
+  },
 }
 </script>

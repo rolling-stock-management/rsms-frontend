@@ -30,7 +30,7 @@
         >Изтриване</b-button
       >
       <b-button variant="outline-primary" class="mx-1" to="/dashboard/users"
-        >Списък роли</b-button
+        >Списък потребители</b-button
       >
     </div>
   </div>
