@@ -28,6 +28,7 @@ export default {
     '~/plugins/StatusService.js',
     '~/plugins/RepairTypeService.js',
     '~/plugins/OwnerService.js',
+    '~/plugins/RepairWorkshopService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
