@@ -25,6 +25,7 @@ export default {
     '~/plugins/PassengerInteriorTypeService.js',
     '~/plugins/PassengerWagonTypeService.js',
     '~/plugins/FreightWagonTypeService.js',
+    '~/plugins/StatusService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
