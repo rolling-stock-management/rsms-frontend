@@ -10,9 +10,15 @@ export const state = () => ({
 export const mutations = {
   SET_PASSENGER_INTERIOR_TYPES(state, passengerInteriorTypes) {
     state.passengerInteriorTypes = passengerInteriorTypes.data
-    state.pagination.currentPage = passengerInteriorTypes.meta.current_page
-    state.pagination.totalPages = passengerInteriorTypes.meta.last_page
-    state.passengerInteriorTypesCount = passengerInteriorTypes.meta.total
+    state.pagination.currentPage = passengerInteriorTypes.meta
+      ? passengerInteriorTypes.meta.current_page
+      : null
+    state.pagination.totalPages = passengerInteriorTypes.meta
+      ? passengerInteriorTypes.meta.last_page
+      : null
+    state.passengerInteriorTypesCount = passengerInteriorTypes.meta
+      ? passengerInteriorTypes.meta.total
+      : null
   },
   SET_PASSENGER_INTERIOR_TYPE(state, passengerInteriorType) {
     state.passengerInteriorType = passengerInteriorType
@@ -42,7 +48,7 @@ export const actions = {
       })
   },
   fetchPassengerInteriorTypesNoPagination({ commit }) {
-    return this.$DepotService
+    return this.$PassengerInteriorTypeService
       .getPassengerInteriorTypesNoPagination()
       .then((response) => {
         commit('SET_PASSENGER_INTERIOR_TYPES', response.data)
