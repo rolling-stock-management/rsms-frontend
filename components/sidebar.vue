@@ -21,7 +21,7 @@
         <h6
           class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
         >
-          <span>Администратор</span>
+          <span>Базови модели</span>
         </h6>
         <ul class="nav flex-column mb-2">
           <li v-if="userHasPermission('depot-viewAny')" class="nav-item">
@@ -33,6 +33,95 @@
               exact-active-class="active"
               @click.prevent
               >Депа</b-link
+            >
+          </li>
+          <li
+            v-if="userHasPermission('passenger-wagon-type-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/passenger-wagon-types"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Серии пътнически вагони</b-link
+            >
+          </li>
+          <li
+            v-if="userHasPermission('freight-wagon-type-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/freight-wagon-types"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Серии товарни вагони</b-link
+            >
+          </li>
+          <li v-if="userHasPermission('owner-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/owners"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Собственици</b-link
+            >
+          </li>
+          <li
+            v-if="userHasPermission('repair-workshop-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/repair-workshops"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Ремонтни работилници</b-link
+            >
+          </li>
+          <li
+            v-if="userHasPermission('passenger-interior-type-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/passenger-interior-types"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Типове интериори пътнически вагони</b-link
+            >
+          </li>
+          <li v-if="userHasPermission('status-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/statuses"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Статуси</b-link
+            >
+          </li>
+          <li v-if="userHasPermission('repair-type-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/repair-types"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Типове ремонти</b-link
             >
           </li>
         </ul>
