@@ -23,6 +23,7 @@ export default {
     '~/plugins/PermissionService.js',
     '~/plugins/UserService.js',
     '~/plugins/PassengerInteriorTypeService.js',
+    '~/plugins/PassengerWagonTypeService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
