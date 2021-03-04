@@ -34,12 +34,7 @@
                 required
               ></b-form-input>
             </b-form-group>
-            <b-form-group
-              id="email"
-              label="Email адрес:"
-              label-for="email"
-              description="Нужно е да потвърдите този адрес след регистрация."
-            >
+            <b-form-group id="email" label="Email адрес:" label-for="email">
               <b-form-input
                 id="email"
                 v-model="form.email"
