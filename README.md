@@ -1,20 +1,5 @@
-# rsms-frontend
+# Система за управление на ПЖПС - потребителски интерфейс
 
-## Build Setup
+### Rolling Stock Management System - frontend
 
-```bash
-# install dependencies
-$ npm install
-
-# serve with hot reload at localhost:3000
-$ npm run dev
-
-# build for production and launch server
-$ npm run build
-$ npm run start
-
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+Потребителски интерфейс(frontend) на „Система за управление на подвижен железопътен състав“. Проект №146, НОИТ 2020/2021
