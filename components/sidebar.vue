@@ -13,10 +13,33 @@
             exact
             exact-active-class="active"
             @click.prevent
-            >Dashboard</b-link
+            >Начало</b-link
           >
         </li>
       </ul>
+      <div v-if="userHasRole('passenger-manager')">
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        >
+          <span>Пътнически вагони</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li
+            v-if="userHasPermission('passenger-wagon-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/passenger-wagons"
+              v-b-toggle.nav-collapse
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Пътнически вагони</b-link
+            >
+          </li>
+        </ul>
+      </div>
       <div v-if="userHasRole('administrator')">
         <h6
           class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
