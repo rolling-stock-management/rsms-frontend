@@ -33,7 +33,7 @@
               <nuxt-link
                 :to="'/dashboard/passenger-wagons/' + passengerWagon.data.id"
                 class="text-body"
-                >{{ passengerWagon.data.number }}</nuxt-link
+                >{{ passengerWagon.data.stylized_number }}</nuxt-link
               >
             </td>
             <td>
@@ -48,7 +48,9 @@
             </td>
             <td>
               {{
-                passengerWagon.data.depot ? passengerWagon.data.depot.name : '-'
+                passengerWagon.data.depot
+                  ? passengerWagon.data.depot.data.name
+                  : '-'
               }}
             </td>
             <td>
