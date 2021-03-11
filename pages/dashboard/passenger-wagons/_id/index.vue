@@ -58,7 +58,7 @@
     <div class="d-block d-sm-flex justify-content-end">
       <b-button
         variant="outline-primary"
-        to="/dashboard/passenger-wagon"
+        to="/dashboard/passenger-wagons"
         class="mx-1 my-1 my-sm-0"
         >Списък пътнически вагони</b-button
       >
