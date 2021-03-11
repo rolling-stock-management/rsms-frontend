@@ -10,9 +10,9 @@ export const state = () => ({
 export const mutations = {
   SET_DEPOTS(state, depots) {
     state.depots = depots.data
-    state.pagination.currentPage = depots.meta.current_page
-    state.pagination.totalPages = depots.meta.last_page
-    state.depotsCount = depots.meta.total
+    state.pagination.currentPage = depots.meta ? depots.meta.current_page : null
+    state.pagination.totalPages = depots.meta ? depots.meta.last_page : null
+    state.depotsCount = depots.meta ? depots.meta.total : null
   },
   SET_DEPOT(state, depot) {
     state.depot = depot
@@ -34,7 +34,7 @@ export const actions = {
     })
   },
   fetchDepotsNoPagination({ commit }) {
-    return this.$DepotService.getDepots().then((response) => {
+    return this.$DepotService.getDepotsNoPagination().then((response) => {
       commit('SET_DEPOTS', response.data)
     })
   },
