@@ -4,6 +4,12 @@
       class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
     >
       <h4>Списък на всички пътнически вагони</h4>
+      <SearchField
+        mode="link"
+        placeholder="Търсене на вагон..."
+        link="/dashboard/passenger-wagons/"
+        route="/passenger-wagons-search"
+      ></SearchField>
       <div class="mb-2 mb-md-0">
         <b-button
           type="button"
@@ -74,8 +80,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import SearchField from '~/components/SearchField'
 
 export default {
+  components: {
+    SearchField,
+  },
   layout: 'dashboard',
   middleware: 'hasPermission',
   meta: {
