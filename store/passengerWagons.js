@@ -41,6 +41,15 @@ export const actions = {
         commit('SET_PASSENGER_WAGONES', response.data)
       })
   },
+  fetchPassengerWagonsWithFilters({ commit }, query) {
+    const page = query.page
+    const filters = query.filter
+    return this.$PassengerWagonService
+      .getPassengerWagonsWithFilters(page, filters)
+      .then((response) => {
+        commit('SET_PASSENGER_WAGONES', response.data)
+      })
+  },
   fetchPassengerWagonById({ commit, getters, state }, id) {
     if (id === state.passengerWagon.id) {
       return state.passengerWagon

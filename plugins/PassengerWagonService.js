@@ -3,6 +3,9 @@ export default function ({ $axios }, inject) {
     getPassengerWagons(page) {
       return $axios.get('/passenger-wagons?page=' + page)
     },
+    getPassengerWagonsWithFilters(page, filters) {
+      return $axios.get('/passenger-wagons' + filters + '&page=' + page)
+    },
     getPassengerWagon(id) {
       return $axios.get('/passenger-wagons/' + id)
     },

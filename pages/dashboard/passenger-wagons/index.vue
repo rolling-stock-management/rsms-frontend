@@ -19,6 +19,14 @@
         >
       </div>
     </div>
+    <PassengerWagonFilter
+      :depots="depots"
+      :statuses="statuses"
+      :owners="owners"
+      :repair-workshops="repairWorkshops"
+      :wagon-types="wagonTypes"
+      @applyFilters="applyFilters($event)"
+    ></PassengerWagonFilter>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -81,10 +89,12 @@
 <script>
 import { mapState } from 'vuex'
 import SearchField from '~/components/SearchField'
+import PassengerWagonFilter from '~/components/PassengerWagonFilter'
 
 export default {
   components: {
     SearchField,
+    PassengerWagonFilter,
   },
   layout: 'dashboard',
   middleware: 'hasPermission',
@@ -95,6 +105,13 @@ export default {
     try {
       const page = query.page ? query.page : 1
       await store.dispatch('passengerWagons/fetchPassengerWagons', page)
+      await store.dispatch('depots/fetchDepotsNoPagination')
+      await store.dispatch('statuses/fetchStatusesNoPagination')
+      await store.dispatch('owners/fetchOwnersNoPagination')
+      await store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
+      await store.dispatch(
+        'passengerWagonTypes/fetchPassengerWagonTypesNoPagination'
+      )
     } catch (e) {
       error({
         statusCode: 503,
@@ -107,11 +124,26 @@ export default {
     passengerWagons: (state) => state.passengerWagons.passengerWagons,
     passengerWagonsCount: (state) => state.passengerWagons.passengerWagonsCount,
     pagination: (state) => state.passengerWagons.pagination,
+    depots: (state) => state.depots.depots,
+    statuses: (state) => state.statuses.statuses,
+    owners: (state) => state.owners.owners,
+    repairWorkshops: (state) => state.repairWorkshops.repairWorkshops,
+    wagonTypes: (state) => state.passengerWagonTypes.passengerWagonTypes,
   }),
   watchQuery: ['page'],
   methods: {
     linkGen(pageNum) {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
+    },
+    async applyFilters(filter) {
+      const page = this.$route.query.page ?? 1
+      await this.$store.dispatch(
+        'passengerWagons/fetchPassengerWagonsWithFilters',
+        {
+          page,
+          filter,
+        }
+      )
     },
   },
 }
