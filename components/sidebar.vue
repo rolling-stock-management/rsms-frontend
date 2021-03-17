@@ -7,8 +7,8 @@
       <ul class="nav flex-column">
         <li class="nav-item">
           <b-link
-            to="/dashboard"
             v-b-toggle.nav-collapse
+            to="/dashboard"
             class="nav-link"
             exact
             exact-active-class="active"
@@ -17,6 +17,8 @@
           >
         </li>
       </ul>
+
+      <!-- Passenger manager -->
       <div v-if="userHasRole('passenger-manager')">
         <h6
           class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
@@ -29,8 +31,8 @@
             class="nav-item"
           >
             <b-link
-              to="/dashboard/passenger-wagons"
               v-b-toggle.nav-collapse
+              to="/dashboard/passenger-wagons"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -40,6 +42,58 @@
           </li>
         </ul>
       </div>
+
+      <!-- Freight manager -->
+      <div v-if="userHasRole('freight-manager')">
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        >
+          <span>Товарни вагони</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li
+            v-if="userHasPermission('freight-wagon-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              v-b-toggle.nav-collapse
+              to="/dashboard/freight-wagons"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Товарни вагони</b-link
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Locomotive manager -->
+      <div v-if="userHasRole('locomotive-manager')">
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        >
+          <span>Локомотиви</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li
+            v-if="userHasPermission('tractive-unit-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              v-b-toggle.nav-collapse
+              to="/dashboard/tractive-units"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click.prevent
+              >Локомотиви</b-link
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-- Administrator -->
       <div v-if="userHasRole('administrator')">
         <h6
           class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
@@ -49,8 +103,8 @@
         <ul class="nav flex-column mb-2">
           <li v-if="userHasPermission('depot-viewAny')" class="nav-item">
             <b-link
-              to="/dashboard/depots"
               v-b-toggle.nav-collapse
+              to="/dashboard/depots"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -63,8 +117,8 @@
             class="nav-item"
           >
             <b-link
-              to="/dashboard/passenger-wagon-types"
               v-b-toggle.nav-collapse
+              to="/dashboard/passenger-wagon-types"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -77,8 +131,8 @@
             class="nav-item"
           >
             <b-link
-              to="/dashboard/freight-wagon-types"
               v-b-toggle.nav-collapse
+              to="/dashboard/freight-wagon-types"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -88,8 +142,8 @@
           </li>
           <li v-if="userHasPermission('owner-viewAny')" class="nav-item">
             <b-link
-              to="/dashboard/owners"
               v-b-toggle.nav-collapse
+              to="/dashboard/owners"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -102,8 +156,8 @@
             class="nav-item"
           >
             <b-link
-              to="/dashboard/repair-workshops"
               v-b-toggle.nav-collapse
+              to="/dashboard/repair-workshops"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -116,8 +170,8 @@
             class="nav-item"
           >
             <b-link
-              to="/dashboard/passenger-interior-types"
               v-b-toggle.nav-collapse
+              to="/dashboard/passenger-interior-types"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -127,8 +181,8 @@
           </li>
           <li v-if="userHasPermission('status-viewAny')" class="nav-item">
             <b-link
-              to="/dashboard/statuses"
               v-b-toggle.nav-collapse
+              to="/dashboard/statuses"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -138,8 +192,8 @@
           </li>
           <li v-if="userHasPermission('repair-type-viewAny')" class="nav-item">
             <b-link
-              to="/dashboard/repair-types"
               v-b-toggle.nav-collapse
+              to="/dashboard/repair-types"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -158,8 +212,8 @@
         <ul class="nav flex-column mb-2">
           <li v-if="userHasPermission('user-viewAny')" class="nav-item">
             <b-link
-              to="/dashboard/users"
               v-b-toggle.nav-collapse
+              to="/dashboard/users"
               class="nav-link"
               exact
               exact-active-class="active"
@@ -169,8 +223,8 @@
           </li>
           <li v-if="userHasPermission('role-viewAny')" class="nav-item">
             <b-link
-              to="/dashboard/roles"
               v-b-toggle.nav-collapse
+              to="/dashboard/roles"
               class="nav-link"
               exact
               exact-active-class="active"
