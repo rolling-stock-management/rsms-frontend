@@ -8,7 +8,7 @@ export const state = () => ({
   },
 })
 export const mutations = {
-  SET_FREIGHT_WAGONES(state, freightWagons) {
+  SET_FREIGHT_WAGONS(state, freightWagons) {
     state.freightWagons = freightWagons.data
     state.pagination.currentPage = freightWagons.meta
       ? freightWagons.meta.current_page
@@ -36,7 +36,7 @@ export const mutations = {
 export const actions = {
   fetchFreightWagons({ commit }, page) {
     return this.$FreightWagonService.getFreightWagons(page).then((response) => {
-      commit('SET_FREIGHT_WAGONES', response.data)
+      commit('SET_FREIGHT_WAGONS', response.data)
     })
   },
   fetchFreightWagonsWithFilters({ commit }, query) {
@@ -45,7 +45,7 @@ export const actions = {
     return this.$FreightWagonService
       .getFreightWagonsWithFilters(page, filters)
       .then((response) => {
-        commit('SET_FREIGHT_WAGONES', response.data)
+        commit('SET_FREIGHT_WAGONS', response.data)
       })
   },
   fetchFreightWagonById({ commit, getters, state }, id) {
