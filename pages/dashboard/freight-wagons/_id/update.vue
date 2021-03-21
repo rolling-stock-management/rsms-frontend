@@ -1,13 +1,13 @@
 <template>
   <div class="my-2">
-    <h4>Редактиране на пътнически вагон</h4>
+    <h4>Редактиране на товарен вагон</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
       <b-form-group id="inputName" label="Номер на вагон" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.number"
-          placeholder="Въведете номер на вагон на вагон..."
+          placeholder="Въведете номер на вагон..."
           required
         ></b-form-input>
       </b-form-group>

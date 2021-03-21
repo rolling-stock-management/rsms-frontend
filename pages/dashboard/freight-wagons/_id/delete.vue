@@ -53,7 +53,7 @@ export default {
         error({
           statusCode: 503,
           message:
-            'Неуспешно изтриване на роля ' +
+            'Неуспешно изтриване на товарен вагон ' +
             this.$route.params.id +
             '. Моля, опитайте по-късно.',
         })
