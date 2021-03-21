@@ -11,6 +11,7 @@
       to="/dashboard/"
       class="my-1"
       v-if="userHasRole('passenger-reporter')"
+      disabled
       >Извърши проверка на вагон</b-button
     >
     <b-button
@@ -38,7 +39,7 @@
       variant="outline-primary"
       to="/dashboard/tractive-units"
       class="my-1"
-      v-if="userHasRole('locmotive-manager')"
+      v-if="userHasRole('locomotive-manager')"
       >Локомотиви</b-button
     >
   </b-card>
