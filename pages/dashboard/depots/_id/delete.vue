@@ -4,10 +4,17 @@
     <hr />
     <b-card header="Влизане">
       <p>
-        Наистина ли искате да изтриете депо {{ depot.data.name }}? Това действие
-        е необратимо.
+        Наистина ли искате да изтриете депо {{ depot.name }}? Това действие е
+        необратимо.
       </p>
       <div class="d-flex justify-content-end">
+        <b-button
+          type="button"
+          :to="'/dashboard/depots/' + depot.id"
+          variant="outline-success"
+          class="mx-1"
+          >Отказ</b-button
+        >
         <b-button variant="outline-danger" @click="handleDelete"
           >Изтриване</b-button
         >
@@ -44,7 +51,7 @@ export default {
   methods: {
     async handleDelete() {
       try {
-        await this.$store.dispatch('depots/deleteDepot', this.depot.data.id)
+        await this.$store.dispatch('depots/deleteDepot', this.depot.id)
         this.$router.push(
           '/dashboard/depots?page=' +
             this.$store.state.depots.pagination.currentPage

@@ -50,7 +50,7 @@ export const actions = {
       return depot
     } else {
       return this.$DepotService.getDepot(id).then((response) => {
-        commit('SET_DEPOT', response.data)
+        commit('SET_DEPOT', response.data.data)
         return response.data
       })
     }

@@ -5,12 +5,30 @@
     <p><b>Име: </b>{{ depot.name }}</p>
     <p><b>Бележка: </b>{{ depot.note }}</p>
     <p><b>Последна промяна: </b>{{ depot.last_updated }}</p>
-    <div class="d-flex justify-content-end">
-      <b-button variant="outline-success" to="/dashboard/depots/create"
+    <div class="d-block d-sm-flex justify-content-end">
+      <b-button
+        variant="outline-primary"
+        to="/dashboard/depots"
+        class="mx-1 my-1 my-sm-0"
+        >Списък депа</b-button
+      >
+      <b-button
+        variant="outline-success"
+        to="/dashboard/depots/create"
+        class="mx-1 my-1 my-sm-0"
         >Добавяне на нов запис</b-button
       >
-      <b-button variant="outline-primary" class="mx-1" to="/dashboard/depots"
-        >Списък депа</b-button
+      <b-button
+        variant="outline-warning"
+        class="mx-1 my-1 my-sm-0"
+        :to="'/dashboard/depots/' + depot.id + '/update'"
+        >Промяна</b-button
+      >
+      <b-button
+        variant="outline-danger"
+        :to="'/dashboard/depots/' + depot.id + '/delete'"
+        class="mx-1 my-1 my-sm-0"
+        >Изтриване</b-button
       >
     </div>
   </div>
@@ -29,7 +47,6 @@ export default {
     try {
       await store.dispatch('depots/fetchDepotById', params.id)
     } catch (e) {
-      console.log(e)
       error({
         statusCode: 503,
         message:

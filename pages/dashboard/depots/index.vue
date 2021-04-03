@@ -27,7 +27,13 @@
         <tbody>
           <tr v-for="(depot, id) in depots" :key="id">
             <td>{{ depot.data.id }}</td>
-            <td>{{ depot.data.name }}</td>
+            <td>
+              <nuxt-link
+                :to="'/dashboard/depots/' + depot.data.id"
+                class="text-body"
+                >{{ depot.data.name }}</nuxt-link
+              >
+            </td>
             <td :id="'tooltip-target-' + depot.data.id">
               {{
                 depot.data.note

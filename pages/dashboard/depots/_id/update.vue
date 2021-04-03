@@ -3,7 +3,7 @@
     <h4>Редактиране на депо</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group id="inputName" label="Име на депо" label-for="inputName">
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -41,8 +41,8 @@ export default {
   data() {
     return {
       form: {
-        name: this.$store.state.depots.depot.data.name,
-        note: this.$store.state.depots.depot.data.note,
+        name: this.$store.state.depots.depot.name,
+        note: this.$store.state.depots.depot.note,
       },
       show: true,
     }
@@ -92,8 +92,8 @@ export default {
     onReset(event) {
       event.preventDefault()
       // Reset form values
-      this.form.name = this.$store.state.depots.depot.data.name
-      this.form.note = this.$store.state.depots.depot.data.note
+      this.form.name = this.$store.state.depots.depot.name
+      this.form.note = this.$store.state.depots.depot.note
 
       this.show = false
       this.$nextTick(() => {

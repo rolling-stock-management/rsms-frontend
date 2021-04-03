@@ -3,7 +3,7 @@
     <h4>Добавяне на депо</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group id="inputName" label="Име на депо" label-for="inputName">
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -18,12 +18,14 @@
           placeholder="Въведете въведете допълнителна информация (незадължително)..."
         ></b-form-input>
       </b-form-group>
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-end">
         <b-button type="button" to="/dashboard/depots" variant="outline-danger"
           >Отказ</b-button
         >
+        <b-button type="reset" variant="outline-warning" class="mx-1"
+          >Изчистване</b-button
+        >
         <b-button type="submit" variant="outline-success">Създаване</b-button>
-        <b-button type="reset" variant="outline-warning">Изчистване</b-button>
       </div>
     </b-form>
   </div>
@@ -64,7 +66,10 @@ export default {
       try {
         await this.$store.dispatch('depots/createDepot', this.form)
       } catch (error) {
-        console.log(error)
+        error({
+          statusCode: 503,
+          message: 'Неуспешно добавяне на депо. Моля, опитайте по-късно.',
+        })
       }
     },
     onReset(event) {
