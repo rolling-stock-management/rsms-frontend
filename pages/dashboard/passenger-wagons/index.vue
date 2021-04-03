@@ -31,18 +31,17 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th>#</th>
             <th>Номер</th>
             <th>Означение</th>
             <th>Собственик</th>
             <th>Депо</th>
             <th>Статус</th>
+            <th>Изтичане валидност на ремонт</th>
             <th>Последна промяна</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(passengerWagon, id) in passengerWagons" :key="id">
-            <td>{{ passengerWagon.data.id }}</td>
             <td>
               <nuxt-link
                 :to="'/dashboard/passenger-wagons/' + passengerWagon.data.id"
@@ -69,6 +68,13 @@
             </td>
             <td>
               {{ passengerWagon.data.status.data.name }}
+            </td>
+            <td>
+              {{
+                passengerWagon.data.repair_valid_until
+                  ? passengerWagon.data.repair_valid_until
+                  : '-'
+              }}
             </td>
             <td>{{ passengerWagon.data.updated_at }}</td>
           </tr>

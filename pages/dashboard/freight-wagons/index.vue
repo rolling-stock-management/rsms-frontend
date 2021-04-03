@@ -36,6 +36,7 @@
             <th>Собственик</th>
             <th>Депо</th>
             <th>Статус</th>
+            <th>Изтичане валидност на ремонт</th>
             <th>Последна промяна</th>
           </tr>
         </thead>
@@ -67,6 +68,13 @@
             </td>
             <td>
               {{ freightWagon.data.status.data.name }}
+            </td>
+            <td>
+              {{
+                freightWagon.data.repair_valid_until
+                  ? freightWagon.data.repair_valid_until
+                  : '-'
+              }}
             </td>
             <td>{{ freightWagon.data.updated_at }}</td>
           </tr>
