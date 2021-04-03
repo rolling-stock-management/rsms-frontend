@@ -19,6 +19,7 @@
           <tr>
             <th>#</th>
             <th>Име</th>
+            <th>Брой разрешения</th>
             <th>Последна Промяна</th>
             <th></th>
           </tr>
@@ -31,6 +32,13 @@
                 :to="'/dashboard/roles/' + role.data.id"
                 class="text-body"
                 >{{ role.data.name }}</nuxt-link
+              >
+            </td>
+            <td>
+              <nuxt-link
+                :to="'/dashboard/roles/' + role.data.id"
+                class="text-body"
+                >{{ role.data.permissions.length }}</nuxt-link
               >
             </td>
             <td>{{ role.data.last_updated }}</td>

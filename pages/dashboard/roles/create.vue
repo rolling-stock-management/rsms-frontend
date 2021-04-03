@@ -3,7 +3,7 @@
     <h4>Добавяне на роля</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group id="inputName" label="Име на роля" label-for="inputName">
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -11,33 +11,31 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-button v-b-toggle.collapse-1 variant="outline-primary" class="mb-2"
-        >Задаване на разрешения</b-button
-      >
-      <b-collapse id="collapse-1" class="my-2">
-        <b-card>
-          <b-form-group v-slot="{ ariaDescribedby }" label="Разрешения: ">
-            <b-form-checkbox-group
-              id="checkbox-group-2"
-              v-model="form.permission_ids"
-              :aria-describedby="ariaDescribedby"
+      <b-form-group v-slot="{ ariaDescribedby }" label="Разрешения: ">
+        <b-card class="custom-checkbox overflow-auto">
+          <b-form-checkbox-group
+            id="checkbox-group-2"
+            v-model="form.permission_ids"
+            :aria-describedby="ariaDescribedby"
+            stacked
+          >
+            <b-form-checkbox
+              v-for="(permission, id) in permissions"
+              :key="id"
+              :value="permission.data.id"
+              >{{ permission.data.name }}</b-form-checkbox
             >
-              <b-form-checkbox
-                v-for="(permission, id) in permissions"
-                :key="id"
-                :value="permission.data.id"
-                >{{ permission.data.name }}</b-form-checkbox
-              >
-            </b-form-checkbox-group>
-          </b-form-group>
+          </b-form-checkbox-group>
         </b-card>
-      </b-collapse>
-      <div class="d-flex justify-content-between">
+      </b-form-group>
+      <div class="d-flex justify-content-end">
         <b-button type="button" to="/dashboard/roles" variant="outline-danger"
           >Отказ</b-button
         >
-        <b-button type="submit" variant="outline-success">Създаване</b-button>
-        <b-button type="reset" variant="outline-warning">Изчистване</b-button>
+        <b-button type="reset" variant="outline-warning" class="mx-1"
+          >Изчистване</b-button
+        >
+        <b-button type="submit" variant="outline-success">Добавяне</b-button>
       </div>
     </b-form>
   </div>
@@ -110,3 +108,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.custom-checkbox {
+  max-height: 50vh;
+}
+</style>

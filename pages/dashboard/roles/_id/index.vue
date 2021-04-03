@@ -12,23 +12,30 @@
       >
     </b-list-group>
     <p><b>Последна промяна: </b>{{ role.last_updated }}</p>
-    <div class="d-flex justify-content-end">
-      <b-button variant="outline-success" to="/dashboard/roles/create"
+    <div class="d-block d-sm-flex justify-content-end">
+      <b-button
+        variant="outline-primary"
+        to="/dashboard/roles"
+        class="mx-1 my-1 my-sm-0"
+        >Списък роли</b-button
+      >
+      <b-button
+        variant="outline-success"
+        to="/dashboard/roles/create"
+        class="mx-1 my-1 my-sm-0"
         >Добавяне на нов запис</b-button
       >
       <b-button
         variant="outline-warning"
-        class="mx-1"
+        class="mx-1 my-1 my-sm-0"
         :to="'/dashboard/roles/' + role.id + '/update'"
         >Промяна</b-button
       >
       <b-button
         variant="outline-danger"
         :to="'/dashboard/roles/' + role.id + '/delete'"
+        class="mx-1 my-1 my-sm-0"
         >Изтриване</b-button
-      >
-      <b-button variant="outline-primary" class="mx-1" to="/dashboard/roles"
-        >Списък роли</b-button
       >
     </div>
   </div>
