@@ -3,17 +3,17 @@
     <h4>Редактиране на пътнически вагон</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group id="inputName" label="Номер на вагон" label-for="inputName">
+      <b-form-group id="inputName" label="Номер" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.number"
-          placeholder="Въведете номер на вагон на вагон..."
+          placeholder="Въведете номер на вагон..."
           required
         ></b-form-input>
       </b-form-group>
       <b-form-group
         id="inputLetterMarking"
-        label="Означение на вагон"
+        label="Означение"
         label-for="inputName"
       >
         <b-form-input
@@ -22,8 +22,8 @@
           placeholder="Въведете означение на вагон..."
         ></b-form-input>
       </b-form-group>
-      <b-form-group label="Избиране на собственик" label-for="selectOwner">
-        <b-form-select v-model="form.owner_id" id="selectOwner" required>
+      <b-form-group label="Собственик" label-for="selectOwner">
+        <b-form-select id="selectOwner" v-model="form.owner_id" required>
           <b-form-select-option :value="null" disabled
             >&lt; няма &gt;</b-form-select-option
           >
@@ -35,8 +35,8 @@
           >
         </b-form-select>
       </b-form-group>
-      <b-form-group label="Избиране на статус" label-for="selectStatus">
-        <b-form-select v-model="form.status_id" id="selectStatus" required>
+      <b-form-group label="Статус" label-for="selectStatus">
+        <b-form-select id="selectStatus" v-model="form.status_id" required>
           <b-form-select-option :value="null" disabled
             >&lt; няма &gt;</b-form-select-option
           >
@@ -48,7 +48,7 @@
           >
         </b-form-select>
       </b-form-group>
-      <b-form-group id="inputTare" label="Тара на вагон" label-for="inputTare">
+      <b-form-group id="inputTare" label="Тара" label-for="inputTare">
         <b-form-input
           id="inputTare"
           v-model="form.tare"
@@ -58,7 +58,7 @@
       </b-form-group>
       <b-form-group
         id="inputTotalWeight"
-        label="Брутна маса на вагон"
+        label="Брутна маса"
         label-for="inputTotalWeight"
       >
         <b-form-input
@@ -70,7 +70,7 @@
       </b-form-group>
       <b-form-group
         id="inputSeats"
-        label="Брой седящи места на вагон"
+        label="Брой седящи места"
         label-for="inputSeats"
       >
         <b-form-input
@@ -82,7 +82,7 @@
       </b-form-group>
       <b-form-group
         id="inputMaxSpeed"
-        label="Макисмална скорост на вагон"
+        label="Макисмална скорост"
         label-for="inputMaxSpeed"
       >
         <b-form-input
@@ -92,30 +92,22 @@
           type="number"
         ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="inputLength"
-        label="Дължина на вагон"
-        label-for="inputLength"
-      >
+      <b-form-group id="inputLength" label="Дължина" label-for="inputLength">
         <b-form-input
           id="inputLength"
           v-model="form.length"
           placeholder="Въведете дължина на вагон..."
         ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="inputBrake"
-        label="Спирачка на вагон"
-        label-for="inputBrake"
-      >
+      <b-form-group id="inputBrake" label="Спирачка" label-for="inputBrake">
         <b-form-input
           id="inputBrake"
           v-model="form.brake_marking"
           placeholder="Въведете спирачка на вагон..."
         ></b-form-input>
       </b-form-group>
-      <b-form-group label="Избиране на депо" label-for="selectDepot">
-        <b-form-select v-model="form.depot_id" id="selectDepot">
+      <b-form-group label="Депо" label-for="selectDepot">
+        <b-form-select id="selectDepot" v-model="form.depot_id">
           <b-form-select-option :value="null"
             >&lt; няма &gt;</b-form-select-option
           >
@@ -128,21 +120,25 @@
         </b-form-select>
       </b-form-group>
       <b-form-group>
-        <label for="example-datepicker">Избиране на дата</label>
+        <label for="datepickerRepairDate">Дата на последен ремонт</label>
         <b-form-datepicker
-          id="example-datepicker"
+          id="datepickerRepairDate"
           v-model="form.repair_date"
           class="mb-2"
-          required
+          :date-format-options="{
+            year: '2-digit',
+            month: '2-digit',
+            day: '2-digit',
+          }"
         ></b-form-datepicker>
       </b-form-group>
       <b-form-group
-        label="Избиране на ремонтна работилница"
+        label="Ремонтна работилница"
         label-for="selectRepairWorkshop"
       >
         <b-form-select
-          v-model="form.repair_workshop_id"
           id="selectRepairWorkshop"
+          v-model="form.repair_workshop_id"
         >
           <b-form-select-option :value="null"
             >&lt; няма &gt;</b-form-select-option
@@ -155,11 +151,11 @@
           >
         </b-form-select>
       </b-form-group>
-      <b-form-group label="Допълнителна бележка" label-for="inputOtherInfo">
+      <b-form-group label="Допълнителна информация" label-for="inputOtherInfo">
         <b-form-textarea
           id="inputOtherInfo"
           v-model="form.other_info"
-          placeholder="Допълнителна информация..."
+          placeholder="Въведете опълнителна информация за вагон..."
           rows="3"
           max-rows="6"
         ></b-form-textarea>
