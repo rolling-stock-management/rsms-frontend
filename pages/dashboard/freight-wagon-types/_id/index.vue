@@ -2,7 +2,7 @@
   <div class="my-2">
     <h4>Данни за тип товарни вагони</h4>
     <hr />
-    <p><b>Име: </b>{{ freightWagonType.name }}</p>
+    <p><b>Означение: </b>{{ freightWagonType.name }}</p>
     <p><b>Описание: </b>{{ freightWagonType.description }}</p>
     <p><b>Последна промяна: </b>{{ freightWagonType.updated_at }}</p>
     <div class="d-block d-sm-flex justify-content-end">

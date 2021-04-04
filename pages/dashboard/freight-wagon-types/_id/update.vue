@@ -3,11 +3,7 @@
     <h4>Редактиране на тип интериор</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на тип товарни вагони"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Означение" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -17,7 +13,7 @@
       </b-form-group>
       <b-form-group
         id="inputDescription"
-        label="Описание на тип товарни вагони"
+        label="Описание"
         label-for="inputDescription"
       >
         <b-form-input
