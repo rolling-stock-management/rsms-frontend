@@ -3,11 +3,7 @@
     <h4>Редактиране на потребител</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на потребител"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -15,8 +11,8 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-form-group label="Избиране на депо" label-for="selectDepot">
-        <b-form-select v-model="form.depot_id" id="selectDepot">
+      <b-form-group label="Депо" label-for="selectDepot">
+        <b-form-select id="selectDepot" v-model="form.depot_id">
           <b-form-select-option :value="null"
             >&lt; няма &gt;</b-form-select-option
           >
@@ -28,16 +24,13 @@
           >
         </b-form-select>
       </b-form-group>
-      <b-form-group
-        v-slot="{ ariaDescribedby }"
-        label="Избиране на роли"
-        label-for="checkRoles"
-      >
-        <b-card>
+      <b-form-group v-slot="{ ariaDescribedby }" label="Роли: ">
+        <b-card class="custom-checkbox overflow-auto">
           <b-form-checkbox-group
-            id="checkRole"
+            id="checkboxRoles"
             v-model="form.role_ids"
             :aria-describedby="ariaDescribedby"
+            stacked
           >
             <b-form-checkbox
               v-for="(role, id) in roles"
@@ -48,16 +41,14 @@
           </b-form-checkbox-group>
         </b-card>
       </b-form-group>
-
-      <!-- </b-collapse> -->
       <div class="d-flex justify-content-end">
         <b-button type="button" to="/dashboard/users" variant="outline-danger"
           >Отказ</b-button
         >
-        <b-button type="submit" variant="outline-success" class="mx-1"
-          >Промяна</b-button
+        <b-button type="reset" variant="outline-warning" class="mx-1"
+          >Изчистване</b-button
         >
-        <b-button type="reset" variant="outline-warning">Изчистване</b-button>
+        <b-button type="submit" variant="outline-success">Промяна</b-button>
       </div>
     </b-form>
   </div>
@@ -134,7 +125,9 @@ export default {
       event.preventDefault()
       // Reset form values
       this.form.name = this.$store.state.users.user.name
-      this.form.depot_id = this.$store.state.users.user.depot.data.id
+      this.form.depot_id = this.$store.state.users.user.depot
+        ? this.$store.state.users.user.depot.data.id
+        : null
       this.form.role_ids = this.$store.state.users.user.roles.map(
         (x) => x.data.id
       )

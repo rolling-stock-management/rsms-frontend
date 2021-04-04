@@ -15,22 +15,29 @@
     <p><b>Регистриран на: </b>{{ user.created_at }}</p>
     <p><b>Последна промяна: </b>{{ user.updated_at }}</p>
     <div class="d-block d-sm-flex justify-content-end">
-      <b-button variant="outline-success" to="/dashboard/users/create"
+      <b-button
+        variant="outline-primary"
+        to="/dashboard/users"
+        class="mx-1 my-1 my-sm-0"
+        >Списък роли</b-button
+      >
+      <b-button
+        variant="outline-success"
+        to="/dashboard/users/create"
+        class="mx-1 my-1 my-sm-0"
         >Добавяне на нов запис</b-button
       >
       <b-button
         variant="outline-warning"
-        class="mx-1 my-2 my-sm-0"
+        class="mx-1 my-1 my-sm-0"
         :to="'/dashboard/users/' + user.id + '/update'"
         >Промяна</b-button
       >
       <b-button
         variant="outline-danger"
         :to="'/dashboard/users/' + user.id + '/delete'"
+        class="mx-1 my-1 my-sm-0"
         >Изтриване</b-button
-      >
-      <b-button variant="outline-primary" class="mx-1" to="/dashboard/users"
-        >Списък потребители</b-button
       >
     </div>
   </div>
