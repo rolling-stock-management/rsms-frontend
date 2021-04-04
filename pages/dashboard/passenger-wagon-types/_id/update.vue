@@ -3,11 +3,7 @@
     <h4>Редактиране на тип интериор</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на тип пътнически вагони"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Означение" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -17,7 +13,7 @@
       </b-form-group>
       <b-form-group
         id="inputDescription"
-        label="Описание на тип пътнически вагони"
+        label="Описание"
         label-for="inputDescription"
       >
         <b-form-input
@@ -33,16 +29,16 @@
       >
         <b-form-input
           id="inputRepairValidFor"
-          type="number"
           v-model="form.repair_valid_for"
+          type="number"
           placeholder="Въведете валидност на ремонта в години..."
           required
         ></b-form-input>
       </b-form-group>
-      <b-form-group label="Избиране на тип интериор" label-for="selectInterior">
+      <b-form-group label="Тип интериор" label-for="selectInterior">
         <b-form-select
-          v-model="form.interior_type_id"
           id="selectInterior"
+          v-model="form.interior_type_id"
           required
         >
           <b-form-select-option :value="null" disabled
@@ -142,7 +138,7 @@ export default {
         error({
           statusCode: 503,
           message:
-            'Неуспешно обновяване на информацията за тип интериор ' +
+            'Неуспешно обновяване на информацията за тип пътнически вагони ' +
             this.$route.params.id +
             '. Моля, опитайте по-късно.',
         })

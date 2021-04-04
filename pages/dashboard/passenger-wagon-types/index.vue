@@ -18,10 +18,11 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Име</th>
+            <th>Означение</th>
             <th>Тип интериор</th>
             <th>Описание</th>
             <th>Последна Промяна</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -60,6 +61,29 @@
               </b-tooltip>
             </td>
             <td>{{ passengerWagonType.data.updated_at }}</td>
+            <td>
+              <div class="d-flex justify-content-end">
+                <b-button
+                  variant="outline-primary"
+                  class="mx-1"
+                  :to="
+                    '/dashboard/passenger-wagon-types/' +
+                    passengerWagonType.data.id +
+                    '/update'
+                  "
+                  >Промяна</b-button
+                >
+                <b-button
+                  variant="outline-danger"
+                  :to="
+                    '/dashboard/passenger-wagon-types/' +
+                    passengerWagonType.data.id +
+                    '/delete'
+                  "
+                  >Изтриване</b-button
+                >
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

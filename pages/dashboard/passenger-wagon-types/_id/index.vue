@@ -6,7 +6,7 @@
     <p><b>Описание: </b>{{ passengerWagonType.description }}</p>
     <p>
       <b>Валидност на ремонта: </b>{{ passengerWagonType.repair_valid_for }}
-      година
+      години
     </p>
     <p><b>Тип интериор: </b>{{ passengerWagonType.interior_type.data.name }}</p>
     <p><b>Последна промяна: </b>{{ passengerWagonType.updated_at }}</p>
