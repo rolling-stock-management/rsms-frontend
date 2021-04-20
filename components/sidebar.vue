@@ -7,12 +7,11 @@
       <ul class="nav flex-column">
         <li class="nav-item">
           <b-link
-            v-b-toggle.nav-collapse
             to="/dashboard"
             class="nav-link"
             exact
             exact-active-class="active"
-            @click.prevent
+            @click="handleClick"
             >Начало</b-link
           >
         </li>
@@ -31,12 +30,11 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/passenger-wagons"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Пътнически вагони</b-link
             >
           </li>
@@ -56,12 +54,11 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/freight-wagons"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Товарни вагони</b-link
             >
           </li>
@@ -81,12 +78,11 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/tractive-units"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Локомотиви</b-link
             >
           </li>
@@ -103,12 +99,11 @@
         <ul class="nav flex-column mb-2">
           <li v-if="userHasPermission('depot-viewAny')" class="nav-item">
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/depots"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Депа</b-link
             >
           </li>
@@ -117,12 +112,11 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/passenger-wagon-types"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Серии пътнически вагони</b-link
             >
           </li>
@@ -131,23 +125,21 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/freight-wagon-types"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Серии товарни вагони</b-link
             >
           </li>
           <li v-if="userHasPermission('owner-viewAny')" class="nav-item">
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/owners"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Собственици</b-link
             >
           </li>
@@ -156,12 +148,11 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/repair-workshops"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Ремонтни работилници</b-link
             >
           </li>
@@ -170,34 +161,31 @@
             class="nav-item"
           >
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/passenger-interior-types"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Типове интериори пътнически вагони</b-link
             >
           </li>
           <li v-if="userHasPermission('status-viewAny')" class="nav-item">
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/statuses"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Статуси</b-link
             >
           </li>
           <li v-if="userHasPermission('repair-type-viewAny')" class="nav-item">
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/repair-types"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Типове ремонти</b-link
             >
           </li>
@@ -212,23 +200,21 @@
         <ul class="nav flex-column mb-2">
           <li v-if="userHasPermission('user-viewAny')" class="nav-item">
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/users"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Потребители</b-link
             >
           </li>
           <li v-if="userHasPermission('role-viewAny')" class="nav-item">
             <b-link
-              v-b-toggle.nav-collapse
               to="/dashboard/roles"
               class="nav-link"
               exact
               exact-active-class="active"
-              @click.prevent
+              @click="handleClick"
               >Роли</b-link
             >
           </li>
@@ -246,6 +232,16 @@ export default {
     },
     userHasRole(role) {
       return this.$UserRolePermissionPlugin.userHasRole(role)
+    },
+    handleClick() {
+      let collapse = 'nav-collapse'
+      if (process.client) {
+        const width = window.innerWidth
+        if (width >= 768) {
+          collapse = ''
+        }
+      }
+      this.$root.$emit('bv::toggle::collapse', collapse)
     },
   },
 }
