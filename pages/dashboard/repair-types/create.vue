@@ -3,11 +3,7 @@
     <h4>Добавяне на тип ремонт</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на тип ремонт"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -17,7 +13,7 @@
       </b-form-group>
       <b-form-group
         id="inputDescription"
-        label="Описание на тип ремонт"
+        label="Описание"
         label-for="inputDescription"
       >
         <b-form-input
@@ -36,7 +32,7 @@
         <b-button type="reset" variant="outline-warning" class="mx-1"
           >Изчистване</b-button
         >
-        <b-button type="submit" variant="outline-success">Създаване</b-button>
+        <b-button type="submit" variant="outline-success">Добавяне</b-button>
       </div>
     </b-form>
   </div>
