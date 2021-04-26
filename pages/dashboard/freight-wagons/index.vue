@@ -19,14 +19,14 @@
         >
       </div>
     </div>
-    <PassengerWagonFilter
+    <WagonFilter
       :depots="depots"
       :statuses="statuses"
       :owners="owners"
       :repair-workshops="repairWorkshops"
       :wagon-types="wagonTypes"
       @applyFilters="applyFilters($event)"
-    ></PassengerWagonFilter>
+    ></WagonFilter>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -95,12 +95,12 @@
 <script>
 import { mapState } from 'vuex'
 import SearchField from '~/components/SearchField'
-import PassengerWagonFilter from '~/components/PassengerWagonFilter'
+import WagonFilter from '~/components/WagonFilter'
 
 export default {
   components: {
     SearchField,
-    PassengerWagonFilter,
+    WagonFilter,
   },
   layout: 'dashboard',
   middleware: 'hasPermission',
