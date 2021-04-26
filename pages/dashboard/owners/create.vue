@@ -3,11 +3,7 @@
     <h4>Добавяне на собственик</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на собственик"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -15,11 +11,7 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="inputNote"
-        label="Описание на собственик"
-        label-for="inputNote"
-      >
+      <b-form-group id="inputNote" label="Описание" label-for="inputNote">
         <b-form-input
           id="inputNote"
           v-model="form.note"
@@ -33,7 +25,7 @@
         <b-button type="reset" variant="outline-warning" class="mx-1"
           >Изчистване</b-button
         >
-        <b-button type="submit" variant="outline-success">Създаване</b-button>
+        <b-button type="submit" variant="outline-success">Добавяне</b-button>
       </div>
     </b-form>
   </div>

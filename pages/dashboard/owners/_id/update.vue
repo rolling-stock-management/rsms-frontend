@@ -3,11 +3,7 @@
     <h4>Редактиране на собственик</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на собственик"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -15,11 +11,7 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="inputNote"
-        label="Бележка на собственик"
-        label-for="inputNote"
-      >
+      <b-form-group id="inputNote" label="Бележка" label-for="inputNote">
         <b-form-input
           id="inputNote"
           v-model="form.note"
