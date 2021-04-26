@@ -19,14 +19,13 @@
         >
       </div>
     </div>
-    <!-- TODO: Add filtering -->
-    <!-- <TractiveUnitFilter
+    <TractiveUnitFilter
       :depots="depots"
       :statuses="statuses"
       :owners="owners"
       :repair-workshops="repairWorkshops"
       @applyFilters="applyFilters($event)"
-    ></TractiveUnitFilter> -->
+    ></TractiveUnitFilter>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -93,10 +92,12 @@
 <script>
 import { mapState } from 'vuex'
 import SearchField from '~/components/SearchField'
+import TractiveUnitFilter from '~/components/TractiveUnitFilter'
 
 export default {
   components: {
     SearchField,
+    TractiveUnitFilter,
   },
   layout: 'dashboard',
   middleware: 'hasPermission',
@@ -106,11 +107,11 @@ export default {
   async fetch({ store, error, query }) {
     try {
       const page = query.page ? query.page : 1
+      store.dispatch('depots/fetchDepotsNoPagination')
+      store.dispatch('statuses/fetchStatusesNoPagination')
+      store.dispatch('owners/fetchOwnersNoPagination')
+      store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
       await store.dispatch('tractiveUnits/fetchTractiveUnits', page)
-      await store.dispatch('depots/fetchDepotsNoPagination')
-      await store.dispatch('statuses/fetchStatusesNoPagination')
-      await store.dispatch('owners/fetchOwnersNoPagination')
-      await store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
     } catch (e) {
       error({
         statusCode: 503,
