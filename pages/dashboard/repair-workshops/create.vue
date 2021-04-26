@@ -3,11 +3,7 @@
     <h4>Добавяне на ремонтна работилница</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на ремонтна работилница"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -17,7 +13,7 @@
       </b-form-group>
       <b-form-group
         id="inputAbbreviation"
-        label="Абревиатура на ремонтна работилница"
+        label="Абревиатура"
         label-for="inputAbbreviation"
       >
         <b-form-input
@@ -27,11 +23,7 @@
           required
         ></b-form-input>
       </b-form-group>
-      <b-form-group
-        id="inputNote"
-        label="Бележка на ремонтна работилница"
-        label-for="inputNote"
-      >
+      <b-form-group id="inputNote" label="Бележка" label-for="inputNote">
         <b-form-input
           id="inputNote"
           v-model="form.note"
