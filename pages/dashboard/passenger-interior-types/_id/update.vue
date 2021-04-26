@@ -3,11 +3,7 @@
     <h4>Редактиране на тип интериор</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group
-        id="inputName"
-        label="Име на тип интериор"
-        label-for="inputName"
-      >
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
@@ -17,7 +13,7 @@
       </b-form-group>
       <b-form-group
         id="inputDescription"
-        label="Описание на тип интериор"
+        label="Описание"
         label-for="inputDescription"
       >
         <b-form-input
@@ -114,8 +110,8 @@ export default {
     onReset(event) {
       event.preventDefault()
       // Reset form values
-      this.form.name = this.$store.state.passengerInteriorTypes.passengerInteriorType.data.name
-      this.form.note = this.$store.state.passengerInteriorTypes.passengerInteriorType.data.description
+      this.form.name = this.$store.state.passengerInteriorTypes.passengerInteriorType.name
+      this.form.description = this.$store.state.passengerInteriorTypes.passengerInteriorType.description
 
       this.show = false
       this.$nextTick(() => {
