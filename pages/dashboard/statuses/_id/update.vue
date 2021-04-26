@@ -3,11 +3,11 @@
     <h4>Редактиране на статус</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
-      <b-form-group id="inputName" label="Име на статус" label-for="inputName">
+      <b-form-group id="inputName" label="Име" label-for="inputName">
         <b-form-input
           id="inputName"
           v-model="form.name"
-          placeholder="Въведете име на роля..."
+          placeholder="Въведете име на статус..."
           required
         ></b-form-input>
       </b-form-group>

@@ -8,6 +8,13 @@
         {{ status.name }}? Това действие е необратимо.
       </p>
       <div class="d-flex justify-content-end">
+        <b-button
+          type="button"
+          :to="'/dashboard/statuses/' + status.id"
+          variant="outline-success"
+          class="mx-1"
+          >Отказ</b-button
+        >
         <b-button variant="outline-danger" @click="handleDelete"
           >Изтриване</b-button
         >
