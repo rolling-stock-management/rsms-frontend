@@ -40,7 +40,7 @@
         <b-button type="reset" variant="outline-warning" class="mx-1"
           >Изчистване</b-button
         >
-        <b-button type="submit" variant="outline-success">Създаване</b-button>
+        <b-button type="submit" variant="outline-success">Добавяне</b-button>
       </div>
     </b-form>
   </div>
