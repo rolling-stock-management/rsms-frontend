@@ -110,14 +110,12 @@ export default {
   async fetch({ store, error, query }) {
     try {
       const page = query.page ? query.page : 1
+      store.dispatch('depots/fetchDepotsNoPagination')
+      store.dispatch('statuses/fetchStatusesNoPagination')
+      store.dispatch('owners/fetchOwnersNoPagination')
+      store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
+      store.dispatch('passengerWagonTypes/fetchPassengerWagonTypesNoPagination')
       await store.dispatch('passengerWagons/fetchPassengerWagons', page)
-      await store.dispatch('depots/fetchDepotsNoPagination')
-      await store.dispatch('statuses/fetchStatusesNoPagination')
-      await store.dispatch('owners/fetchOwnersNoPagination')
-      await store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
-      await store.dispatch(
-        'passengerWagonTypes/fetchPassengerWagonTypesNoPagination'
-      )
     } catch (e) {
       error({
         statusCode: 503,
