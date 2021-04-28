@@ -38,6 +38,16 @@
               >Пътнически вагони</b-link
             >
           </li>
+          <li v-if="userHasPermission('repair-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/repairs?type=1"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Ремонти</b-link
+            >
+          </li>
         </ul>
       </div>
 
@@ -62,6 +72,16 @@
               >Товарни вагони</b-link
             >
           </li>
+          <li v-if="userHasPermission('repair-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/repairs?type=2"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Ремонти</b-link
+            >
+          </li>
         </ul>
       </div>
 
@@ -84,6 +104,16 @@
               exact-active-class="active"
               @click="handleClick"
               >Локомотиви</b-link
+            >
+          </li>
+          <li v-if="userHasPermission('repair-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/repairs?type=3"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Ремонти</b-link
             >
           </li>
         </ul>
