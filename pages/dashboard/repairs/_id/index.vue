@@ -4,8 +4,11 @@
     <hr />
     <p><b>Кратко описание: </b>{{ repair.short_description }}</p>
     <p><b>Ремонтиран ПС: </b>{{ repair.repairable.number }}</p>
-    <p><b>Тип: </b>{{ repair.type.name }}</p>
-    <p><b>Работилница: </b>{{ repair.workshop.abbreviation }}</p>
+    <p><b>Тип: </b>{{ repair.type.name }} - {{ repair.type.description }}</p>
+    <p>
+      <b>Работилница: </b>{{ repair.workshop.abbreviation }} -
+      {{ repair.workshop.name }}
+    </p>
     <p><b>Дата от: </b>{{ repair.start_date }}</p>
     <p><b>Дата до: </b>{{ repair.end_date }}</p>
     <p><b>Описание: </b>{{ repair.description }}</p>
@@ -13,9 +16,9 @@
     <div class="d-block d-sm-flex justify-content-end">
       <b-button
         variant="outline-primary"
-        to="/dashboard/repairs"
+        :to="'/dashboard/repairs?type=' + repariableType"
         class="mx-1 my-1 my-sm-0"
-        >Списък депа</b-button
+        >Списък ремонти</b-button
       >
       <b-button
         variant="outline-success"
@@ -26,12 +29,16 @@
       <b-button
         variant="outline-warning"
         class="mx-1 my-1 my-sm-0"
-        :to="'/dashboard/repairs/' + repair.id + '/update'"
+        :to="
+          '/dashboard/repairs/' + repair.id + '/update?type=' + repariableType
+        "
         >Промяна</b-button
       >
       <b-button
         variant="outline-danger"
-        :to="'/dashboard/repairs/' + repair.id + '/delete'"
+        :to="
+          '/dashboard/repairs/' + repair.id + '/delete?type=' + repariableType
+        "
         class="mx-1 my-1 my-sm-0"
         >Изтриване</b-button
       >
@@ -63,6 +70,18 @@ export default {
   },
   computed: mapState({
     repair: (state) => state.repairs.repair,
+    repariableType() {
+      switch (this.repair.repairable_type) {
+        case 'App\\Models\\PassengerWagon':
+          return '1'
+        case 'App\\Models\\FreightWagon':
+          return '2'
+        case 'App\\Models\\TractiveUnit':
+          return '3'
+        default:
+          return ''
+      }
+    },
   }),
 }
 </script>
