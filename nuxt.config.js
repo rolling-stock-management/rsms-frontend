@@ -32,6 +32,7 @@ export default {
     '~/plugins/PassengerWagonService.js',
     '~/plugins/FreightWagonService.js',
     '~/plugins/TractiveUnitService.js',
+    '~/plugins/RepairService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
