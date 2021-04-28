@@ -111,7 +111,7 @@ export default {
       }
     },
   }),
-  watchQuery: ['page'],
+  watchQuery: ['page', 'type'],
   methods: {
     linkGen(pageNum) {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
