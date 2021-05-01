@@ -35,6 +35,16 @@ export const actions = {
       commit('SET_REPAIRS', response.data)
     })
   },
+  fetchRepairsWithFilters({ commit }, query) {
+    const page = query.page
+    const filters = query.filter
+    const type = query.type
+    return this.$RepairService
+      .getRepairsWithFilters(page, type, filters)
+      .then((response) => {
+        commit('SET_REPAIRS', response.data)
+      })
+  },
   fetchRepairById({ commit, getters, state }, id) {
     if (id === state.repair.id) {
       return state.repair

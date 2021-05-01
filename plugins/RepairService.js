@@ -3,6 +3,11 @@ export default function ({ $axios }, inject) {
     getRepairs(page, type) {
       return $axios.get('/repairs?page=' + page + '&repairable_type=' + type)
     },
+    getRepairsWithFilters(page, type, filters) {
+      return $axios.get(
+        '/repairs' + filters + '&page=' + page + '&repairable_type=' + type
+      )
+    },
     getRepair(id) {
       return $axios.get('/repairs/' + id)
     },

@@ -13,6 +13,11 @@
         >
       </div>
     </div>
+    <repair-filter
+      :workshops="workshops"
+      :types="types"
+      @applyFilters="applyFilters($event)"
+    ></repair-filter>
     <div class="table-responsive">
       <table class="table table-striped">
         <thead>
@@ -65,8 +70,12 @@
 
 <script>
 import { mapState } from 'vuex'
+import RepairFilter from '~/components/RepairFilter'
 
 export default {
+  components: {
+    RepairFilter,
+  },
   layout: 'dashboard',
   middleware: 'hasPermission',
   meta: {
@@ -76,6 +85,8 @@ export default {
     // eslint-disable-next-line eqeqeq
     if (typeof query.type != 'undefined') {
       try {
+        store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
+        store.dispatch('repairTypes/fetchRepairTypesNoPagination')
         const page = query.page ? query.page : 1
         await store.dispatch('repairs/fetchRepairs', { page, type: query.type })
       } catch (e) {
@@ -97,6 +108,8 @@ export default {
     repairs: (state) => state.repairs.repairs,
     repairsCount: (state) => state.repairs.repairsCount,
     pagination: (state) => state.repairs.pagination,
+    types: (state) => state.repairTypes.repairTypes,
+    workshops: (state) => state.repairWorkshops.repairWorkshops,
     titleType() {
       const type = this.$route.query.type
       switch (type) {
@@ -115,6 +128,14 @@ export default {
   methods: {
     linkGen(pageNum) {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
+    },
+    async applyFilters(filter) {
+      const page = this.$route.query.page ?? 1
+      await this.$store.dispatch('repairs/fetchRepairsWithFilters', {
+        page,
+        filter,
+        type: this.$route.query.type,
+      })
     },
   },
 }
