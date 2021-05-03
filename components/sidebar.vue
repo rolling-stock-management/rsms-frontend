@@ -95,6 +95,19 @@
               >Ремонти</b-link
             >
           </li>
+          <li
+            v-if="userHasPermission('freight-wagon-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/freight-wagons?repair_this_month=1"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Изтичащи този месец ревизии</b-link
+            >
+          </li>
         </ul>
       </div>
 
