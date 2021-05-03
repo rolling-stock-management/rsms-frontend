@@ -3,7 +3,12 @@
     <div
       class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
     >
-      <h4>Списък на всички пътнически вагони</h4>
+      <h4>
+        Списък на всички пътнически вагони
+        {{
+          $route.query.repair_this_month ? 'с изтичаща тоци месец ревизия' : ''
+        }}
+      </h4>
       <SearchField
         mode="link"
         placeholder="Търсене на вагон..."
@@ -110,12 +115,17 @@ export default {
   async fetch({ store, error, query }) {
     try {
       const page = query.page ? query.page : 1
+      let filter = '?repair_valid_until_this_month='
+      filter += query.repair_this_month === '1' ? 1 : 0
       store.dispatch('depots/fetchDepotsNoPagination')
       store.dispatch('statuses/fetchStatusesNoPagination')
       store.dispatch('owners/fetchOwnersNoPagination')
       store.dispatch('repairWorkshops/fetchRepairWorkshopsNoPagination')
       store.dispatch('passengerWagonTypes/fetchPassengerWagonTypesNoPagination')
-      await store.dispatch('passengerWagons/fetchPassengerWagons', page)
+      await store.dispatch('passengerWagons/fetchPassengerWagonsWithFilters', {
+        page,
+        filter,
+      })
     } catch (e) {
       error({
         statusCode: 503,
@@ -134,13 +144,17 @@ export default {
     repairWorkshops: (state) => state.repairWorkshops.repairWorkshops,
     wagonTypes: (state) => state.passengerWagonTypes.passengerWagonTypes,
   }),
-  watchQuery: ['page'],
+  watchQuery: ['page', 'repair_this_month'],
   methods: {
     linkGen(pageNum) {
       return pageNum === 1 ? '?' : `?page=${pageNum}`
     },
     async applyFilters(filter) {
       const page = this.$route.query.page ?? 1
+      filter =
+        filter +
+          '&repair_valid_until_this_month=' +
+          this.$route.query.repair_this_month ?? 0
       await this.$store.dispatch(
         'passengerWagons/fetchPassengerWagonsWithFilters',
         {
