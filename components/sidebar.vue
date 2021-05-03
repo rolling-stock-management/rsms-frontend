@@ -142,6 +142,19 @@
               >Ремонти</b-link
             >
           </li>
+          <li
+            v-if="userHasPermission('tractive-unit-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/tractive-units?repair_this_month=1"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Изтичащи този месец ревизии</b-link
+            >
+          </li>
         </ul>
       </div>
 
