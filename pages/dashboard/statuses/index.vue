@@ -54,11 +54,14 @@
       </table>
     </div>
     <div class="overflow-auto d-flex justify-content-between">
-      <b-pagination-nav
-        :link-gen="linkGen"
-        :number-of-pages="pagination.totalPages"
-        use-router
-      ></b-pagination-nav>
+      <div>
+        <b-pagination-nav
+          v-if="statusesCount > 10"
+          :link-gen="linkGen"
+          :number-of-pages="pagination.totalPages"
+          use-router
+        ></b-pagination-nav>
+      </div>
       <p>Общо записи: {{ statusesCount }}</p>
     </div>
   </div>
