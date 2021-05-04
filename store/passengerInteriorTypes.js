@@ -18,7 +18,7 @@ export const mutations = {
       : null
     state.passengerInteriorTypesCount = passengerInteriorTypes.meta
       ? passengerInteriorTypes.meta.total
-      : null
+      : state.passengerInteriorTypes.length
   },
   SET_PASSENGER_INTERIOR_TYPE(state, passengerInteriorType) {
     state.passengerInteriorType = passengerInteriorType
@@ -47,7 +47,12 @@ export const actions = {
         commit('SET_PASSENGER_INTERIOR_TYPES', response.data)
       })
   },
-  fetchPassengerInteriorTypesNoPagination({ commit }) {
+  fetchPassengerInteriorTypesNoPagination({ commit, state }) {
+    if (
+      state.passengerInteriorTypes.length === state.passengerInteriorTypesCount
+    ) {
+      return state.passengerInteriorTypes
+    }
     return this.$PassengerInteriorTypeService
       .getPassengerInteriorTypesNoPagination()
       .then((response) => {
