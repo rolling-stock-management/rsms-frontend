@@ -18,7 +18,7 @@ export const mutations = {
       : null
     state.repairWorkshopsCount = repairWorkshops.meta
       ? repairWorkshops.meta.total
-      : null
+      : state.repairWorkshops.length
   },
   SET_REPAIR_WORKSHOP(state, repairWorkshop) {
     state.repairWorkshop = repairWorkshop
@@ -41,7 +41,10 @@ export const actions = {
         commit('SET_REPAIR_WORKSHOPS', response.data)
       })
   },
-  fetchRepairWorkshopsNoPagination({ commit }) {
+  fetchRepairWorkshopsNoPagination({ commit, state }) {
+    if (state.repairWorkshops.length === state.repairWorkshopsCount) {
+      return state.repairWorkshops
+    }
     return this.$RepairWorkshopService
       .getRepairWorkshopsNoPagination()
       .then((response) => {
