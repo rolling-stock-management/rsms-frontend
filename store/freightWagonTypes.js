@@ -18,7 +18,7 @@ export const mutations = {
       : null
     state.freightWagonTypesCount = freightWagonTypes.meta
       ? freightWagonTypes.meta.total
-      : null
+      : state.freightWagonTypes.length
   },
   SET_FREIGHT_WAGON_TYPE(state, freightWagonType) {
     state.freightWagonType = freightWagonType
@@ -47,7 +47,10 @@ export const actions = {
         commit('SET_FREIGHT_WAGON_TYPES', response.data)
       })
   },
-  fetchFreightWagonTypesNoPagination({ commit }) {
+  fetchFreightWagonTypesNoPagination({ commit, state }) {
+    if (state.freightWagonTypes.length === state.freightWagonTypesCount) {
+      return state.freightWagonTypes
+    }
     return this.$FreightWagonTypeService
       .getFreightWagonTypesNoPagination()
       .then((response) => {
