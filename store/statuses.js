@@ -14,7 +14,9 @@ export const mutations = {
       ? statuses.meta.current_page
       : null
     state.pagination.totalPages = statuses.meta ? statuses.meta.last_page : null
-    state.statusesCount = statuses.meta ? statuses.meta.total : null
+    state.statusesCount = statuses.meta
+      ? statuses.meta.total
+      : state.statuses.length
   },
   SET_STATUS(state, status) {
     state.status = status
@@ -35,7 +37,10 @@ export const actions = {
       commit('SET_STATUSES', response.data)
     })
   },
-  fetchStatusesNoPagination({ commit }) {
+  fetchStatusesNoPagination({ commit, state }) {
+    if (state.statuses.length === state.statusesCount) {
+      return state.statuses
+    }
     return this.$StatusService.getStatusesNoPagination().then((response) => {
       commit('SET_STATUSES', response.data)
     })
