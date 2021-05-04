@@ -16,7 +16,9 @@ export const mutations = {
     state.pagination.totalPages = repairTypes.meta
       ? repairTypes.meta.last_page
       : null
-    state.repairTypesCount = repairTypes.meta ? repairTypes.meta.total : null
+    state.repairTypesCount = repairTypes.meta
+      ? repairTypes.meta.total
+      : state.repairTypes.lenght
   },
   SET_REPAIR_TYPE(state, repairType) {
     state.repairType = repairType
@@ -37,7 +39,10 @@ export const actions = {
       commit('SET_REPAIR_TYPES', response.data)
     })
   },
-  fetchRepairTypesNoPagination({ commit }) {
+  fetchRepairTypesNoPagination({ commit, state }) {
+    if (state.repairTypes.lenght === state.repairTypesCount) {
+      return state.repairTypes
+    }
     return this.$RepairTypeService
       .getRepairTypesNoPagination()
       .then((response) => {
