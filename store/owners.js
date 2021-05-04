@@ -12,7 +12,7 @@ export const mutations = {
     state.owners = owners.data
     state.pagination.currentPage = owners.meta ? owners.meta.current_page : null
     state.pagination.totalPages = owners.meta ? owners.meta.last_page : null
-    state.ownersCount = owners.meta ? owners.meta.total : null
+    state.ownersCount = owners.meta ? owners.meta.total : state.owners.length
   },
   SET_OWNER(state, owner) {
     state.owner = owner
@@ -33,7 +33,10 @@ export const actions = {
       commit('SET_OWNERS', response.data)
     })
   },
-  fetchOwnersNoPagination({ commit }) {
+  fetchOwnersNoPagination({ commit, state }) {
+    if (state.owners.length === state.ownersCount) {
+      return state.owners
+    }
     return this.$OwnerService.getOwnersNoPagination().then((response) => {
       commit('SET_OWNERS', response.data)
     })
