@@ -258,6 +258,16 @@
               >Типове ремонти</b-link
             >
           </li>
+          <li v-if="userHasPermission('timetable-viewAny')" class="nav-item">
+            <b-link
+              to="/dashboard/timetables"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >ГДВ</b-link
+            >
+          </li>
         </ul>
       </div>
       <div v-if="userHasRole('administrator')">
