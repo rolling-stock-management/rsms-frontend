@@ -34,6 +34,7 @@ export default {
     '~/plugins/TractiveUnitService.js',
     '~/plugins/RepairService.js',
     '~/plugins/TimetableService.js',
+    '~/plugins/TrainService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

@@ -15,6 +15,16 @@
             >Начало</b-link
           >
         </li>
+        <li v-if="userHasPermission('train-viewAny')" class="nav-item">
+          <b-link
+            to="/dashboard/trains"
+            class="nav-link"
+            exact
+            exact-active-class="active"
+            @click="handleClick"
+            >Влакове</b-link
+          >
+        </li>
       </ul>
 
       <!-- Passenger manager -->
