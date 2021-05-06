@@ -97,7 +97,10 @@
       </b-form-group>
 
       <div class="d-flex justify-content-end">
-        <b-button type="button" to="/dashboard/repairs" variant="outline-danger"
+        <b-button
+          type="button"
+          :to="'/dashboard/repairs?type=' + this.$route.query.type"
+          variant="outline-danger"
           >Отказ</b-button
         >
         <b-button type="reset" variant="outline-warning" class="mx-1"
