@@ -35,7 +35,12 @@
         <p
           v-if="mode === 'train_id'"
           class="text-body"
-          @click="$emit('updateid', result.data.id)"
+          @click="
+            $emit('updateid', {
+              id: result.data.id,
+              number: result.data.number,
+            })
+          "
         >
           {{ result.data.number }}
         </p>

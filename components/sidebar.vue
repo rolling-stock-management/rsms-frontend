@@ -27,6 +27,30 @@
         </li>
       </ul>
 
+      <!-- Passenger reporter -->
+      <div v-if="userHasRole('passenger-reporter')">
+        <h6
+          class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted"
+        >
+          <span>Пътническо обслужване</span>
+        </h6>
+        <ul class="nav flex-column mb-2">
+          <li
+            v-if="userHasPermission('rolling-stock-train-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/rolling-stock-trains?type=1"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Вагони на влакове</b-link
+            >
+          </li>
+        </ul>
+      </div>
+
       <!-- Passenger manager -->
       <div v-if="userHasRole('passenger-manager')">
         <h6
@@ -69,6 +93,19 @@
               exact-active-class="active"
               @click="handleClick"
               >Изтичащи този месец ревизии</b-link
+            >
+          </li>
+          <li
+            v-if="userHasPermission('rolling-stock-train-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/rolling-stock-trains?type=1"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Вагони на влакове</b-link
             >
           </li>
         </ul>
@@ -118,6 +155,19 @@
               >Изтичащи този месец ревизии</b-link
             >
           </li>
+          <li
+            v-if="userHasPermission('rolling-stock-train-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/rolling-stock-trains?type=2"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Вагони на влакове</b-link
+            >
+          </li>
         </ul>
       </div>
 
@@ -163,6 +213,19 @@
               exact-active-class="active"
               @click="handleClick"
               >Изтичащи този месец ревизии</b-link
+            >
+          </li>
+          <li
+            v-if="userHasPermission('rolling-stock-train-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/rolling-stock-trains?type=3"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Локомотиви на влакове</b-link
             >
           </li>
         </ul>

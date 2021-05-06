@@ -35,6 +35,7 @@ export default {
     '~/plugins/RepairService.js',
     '~/plugins/TimetableService.js',
     '~/plugins/TrainService.js',
+    '~/plugins/RollingStockTrainService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
