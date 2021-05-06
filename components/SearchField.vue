@@ -26,6 +26,12 @@
           :to="link + result.data.id"
           >{{ result.data.stylized_number }}</router-link
         >
+        <router-link
+          v-if="mode === 'train_link'"
+          class="text-body"
+          :to="link + result.data.id"
+          >{{ result.data.number }}</router-link
+        >
         <p
           v-if="mode === 'train_id'"
           class="text-body"

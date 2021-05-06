@@ -4,6 +4,12 @@
       class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
     >
       <h4>Списък на всички влакове</h4>
+      <SearchField
+        mode="train_link"
+        placeholder="Търсене на влак..."
+        link="/dashboard/trains/"
+        route="/trains-search"
+      ></SearchField>
       <div class="mb-2 mb-md-0">
         <b-button
           type="button"
