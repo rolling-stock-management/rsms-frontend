@@ -5,7 +5,11 @@
       header-class="h2 text-center"
       class="mt-4"
     >
-      <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+      <b-alert show variant="danger"
+        >Забележка: Сайтът не е в официална връзка с „БДЖ – Пътнически
+        превози“.</b-alert
+      >
+      <b-form v-if="show" @submit="onSubmit" @reset="onReset">
         <b-form-group
           id="input-group-1"
           label="Email адрес:"
