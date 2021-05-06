@@ -48,6 +48,19 @@
               >Вагони на влакове</b-link
             >
           </li>
+          <li
+            v-if="userHasPermission('passenger-report-viewAny')"
+            class="nav-item"
+          >
+            <b-link
+              to="/dashboard/passenger-reports"
+              class="nav-link"
+              exact
+              exact-active-class="active"
+              @click="handleClick"
+              >Сигнали за нередност</b-link
+            >
+          </li>
         </ul>
       </div>
 
