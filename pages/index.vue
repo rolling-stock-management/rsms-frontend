@@ -6,7 +6,7 @@
           <h1>Система за управление на подвижен железопътен състав</h1>
           <h4>За по-добра железница...</h4>
           <br />
-          <b-button variant="outline-primary" size="lg" disabled
+          <b-button variant="outline-primary" size="lg" to="/passenger-report"
             >Подаване на сигнал за нередност</b-button
           >
         </div>
