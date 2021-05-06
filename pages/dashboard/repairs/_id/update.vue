@@ -1,6 +1,6 @@
 <template>
   <div class="my-2">
-    <h4>Добавяне на ремонт</h4>
+    <h4>Промяна на ремонт</h4>
     <hr />
     <b-form v-if="show" @submit="onSubmit" @reset="onReset">
       <b-form-group

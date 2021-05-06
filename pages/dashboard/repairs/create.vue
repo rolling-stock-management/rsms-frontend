@@ -193,8 +193,14 @@ export default {
     onReset(event) {
       event.preventDefault()
       // Reset form values
-      this.form.name = ''
+      this.form.short_description = ''
+      this.form.type_id = null
+      this.form.workshop_id = null
+      this.form.repairable_type = this.$route.query.type
+      this.form.repairable_id = null
       this.form.description = ''
+      this.form.start_date = ''
+      this.form.end_date = ''
 
       this.show = false
       this.$nextTick(() => {
