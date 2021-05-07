@@ -61,16 +61,6 @@
                     : passengerReport.data.problem_description
                 }}
               </nuxt-link>
-              <b-tooltip
-                v-if="
-                  passengerReport.data.problem_description != null &&
-                  passengerReport.data.problem_description.length > 20
-                "
-                :target="'tooltip-target-' + passengerReport.data.id"
-                triggers="hover"
-              >
-                {{ passengerReport.data.note }}
-              </b-tooltip>
             </td>
             <td>
               {{
