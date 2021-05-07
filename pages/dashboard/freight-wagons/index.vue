@@ -6,7 +6,7 @@
       <h4>
         Списък на всички товарни вагони
         {{
-          $route.query.repair_this_month ? 'с изтичаща тоци месец ревизия' : ''
+          $route.query.repair_this_month ? 'с изтичаща този месец ревизия' : ''
         }}
       </h4>
       <SearchField
