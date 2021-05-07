@@ -19,7 +19,7 @@
         variant="outline-primary"
         to="/dashboard/users"
         class="mx-1 my-1 my-sm-0"
-        >Списък роли</b-button
+        >Списък потребители</b-button
       >
       <b-button
         variant="outline-success"
