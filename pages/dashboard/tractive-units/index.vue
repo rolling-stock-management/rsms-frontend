@@ -149,10 +149,8 @@ export default {
     },
     async applyFilters(filter) {
       const page = this.$route.query.page ?? 1
-      filter =
-        filter +
-          '&repair_valid_until_this_month=' +
-          this.$route.query.repair_this_month ?? 0
+      filter += '&repair_valid_until_this_month='
+      filter += this.$route.query.repair_this_month === '1' ? 1 : 0
       await this.$store.dispatch(
         'tractiveUnits/fetchTractiveUnitsWithFilters',
         {
