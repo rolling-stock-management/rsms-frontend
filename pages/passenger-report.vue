@@ -89,7 +89,12 @@
           label="Прикачване на изображение"
           label-for="inputImage"
         >
-          <b-form-file id="inputImage" accept="image/*" disabled></b-form-file>
+          <b-form-file
+            id="inputImage"
+            v-model="file"
+            accept="image/*"
+            plain
+          ></b-form-file>
         </b-form-group>
 
         <div class="d-flex justify-content-end">
@@ -116,11 +121,13 @@ export default {
       form: {
         email: '',
         date: null,
+        wagon_number: null,
         problem_description: '',
         train_id: null,
       },
       show: true,
       selectedTrain: null,
+      file: null,
     }
   },
   async fetch() {
@@ -139,10 +146,14 @@ export default {
   methods: {
     async onSubmit(event) {
       event.preventDefault()
-      await this.$store.dispatch(
-        'passengerReports/createPassengerReport',
-        this.form
-      )
+      const fd = new FormData()
+      fd.append('image', this.file)
+      fd.append('email', this.form.email)
+      fd.append('date', this.form.date)
+      fd.append('wagon_number', this.form.wagon_number)
+      fd.append('problem_description', this.form.problem_description)
+      fd.append('train_id', this.form.train_id)
+      await this.$store.dispatch('passengerReports/createPassengerReport', fd)
     },
     onReset(event) {
       event.preventDefault()
