@@ -2,21 +2,36 @@
   <div class="my-2">
     <h4>Данни за сигнал за нередност</h4>
     <hr />
-    <p><b>Email: </b>{{ passengerReport.email }}</p>
-    <p><b>Влак: </b>{{ passengerReport.train.data.number }}</p>
-    <p><b>Дата: </b>{{ passengerReport.date }}</p>
-    <p><b>Вагон номер: </b>{{ passengerReport.wagon_number }}</p>
-    <p>
-      <b>Вагон: </b
-      >{{
-        passengerReport.wagon ? passengerReport.wagon.data.stylized_number : '-'
-      }}
-    </p>
-    <p>
-      <b>Описание на проблема: </b>{{ passengerReport.problem_description }}
-    </p>
-    <p><b>Последна промяна: </b>{{ passengerReport.updated_at }}</p>
-    <div class="d-block d-sm-flex justify-content-end">
+    <b-row>
+      <b-col fluid md="6" sm="12">
+        <p><b>Email: </b>{{ passengerReport.email }}</p>
+        <p><b>Влак: </b>{{ passengerReport.train.data.number }}</p>
+        <p><b>Дата: </b>{{ passengerReport.date }}</p>
+        <p><b>Вагон номер: </b>{{ passengerReport.wagon_number }}</p>
+        <p>
+          <b>Вагон: </b
+          >{{
+            passengerReport.wagon
+              ? passengerReport.wagon.data.stylized_number
+              : '-'
+          }}
+        </p>
+        <p>
+          <b>Описание на проблема: </b>{{ passengerReport.problem_description }}
+        </p>
+        <p><b>Последна промяна: </b>{{ passengerReport.updated_at }}</p>
+      </b-col>
+      <b-col fluid md="6" sm="12">
+        <p><b>Прикачено изображение: </b></p>
+        <a :href="this.$img('/images/' + passengerReport.image_file_name)"
+          ><nuxt-img
+            :src="'/images/thumbnails/' + passengerReport.image_file_name"
+            class="thumbnail"
+            height="200"
+        /></a>
+      </b-col>
+    </b-row>
+    <div class="d-block d-sm-flex justify-content-end mt-4">
       <b-button
         variant="outline-primary"
         to="/dashboard/passenger-reports"

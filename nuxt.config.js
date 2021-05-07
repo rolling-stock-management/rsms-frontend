@@ -48,6 +48,7 @@ export default {
     '@nuxtjs/eslint-module',
     // https://go.nuxtjs.dev/stylelint
     '@nuxtjs/stylelint-module',
+    '@nuxt/image',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -102,4 +103,12 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  image: {
+    domains: [`${process.env.API_ROOT}`],
+    provider: 'twicpics',
+    twicpics: {
+      baseURL: `${process.env.API_ROOT}`,
+    },
+  },
 }

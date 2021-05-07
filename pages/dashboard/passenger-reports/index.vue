@@ -69,7 +69,9 @@
                   : '-'
               }}
             </td>
-            <td>Не</td>
+            <td>
+              {{ passengerReport.data.image_file_name ? 'Да' : 'Не' }}
+            </td>
           </tr>
         </tbody>
       </table>
