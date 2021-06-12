@@ -14,7 +14,7 @@
 
     <div
       v-if="focus && searchTerm != 0"
-      class="bg-light rounded-lg p-4 position-absolute"
+      :class="'bg-light rounded-lg p-4 position-' + position"
     >
       <div v-if="results == 0 && searchTerm != 0">
         Не са намерени резултати за '{{ searchTerm }}'
@@ -88,6 +88,11 @@ export default {
       type: String,
       required: false,
       default: '/dashboard',
+    },
+    position: {
+      type: String,
+      required: false,
+      default: 'absolute',
     },
   },
   data() {
