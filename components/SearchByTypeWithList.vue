@@ -7,6 +7,7 @@
           v-model="selectedType"
           :options="options"
           class="mb-2 mb-lg-0 mr-lg-2"
+          @input="handleSelect"
         ></b-form-select
       ></template>
       <SearchField
@@ -14,6 +15,7 @@
         mode="return_id"
         placeholder="Търсене на подвижен състав..."
         :route="selectedType.search"
+        position="relative"
         class="flex-grow-1"
         @updateid="addImageable"
       ></SearchField>
@@ -42,27 +44,18 @@ export default {
   components: {
     SearchField,
   },
+  props: {
+    options: {
+      type: Array,
+      required: true,
+    },
+  },
   data() {
     return {
       selectedType: {
         name: null,
         search: '',
       },
-      options: [
-        { value: null, text: 'Избиране...', disabled: true },
-        {
-          value: { name: 'passenger', search: '/passenger-wagons-search' },
-          text: 'Пътнически вагони',
-        },
-        {
-          value: { name: 'tractive', search: '/tractive-units-search' },
-          text: 'Локомотиви',
-        },
-        {
-          value: { name: 'freight', search: '/freight-wagons-search' },
-          text: 'Товарни вагони',
-        },
-      ],
       imageablesList: [],
       imageablesIds: [],
     }
@@ -88,6 +81,17 @@ export default {
       this.$emit('updateArray', {
         type: this.selectedType.name,
         items: this.imageablesIds,
+      })
+    },
+    handleSelect() {
+      let arrayIndex = -1
+      this.options.forEach((element, index) => {
+        if (element.value?.name === this.selectedType.name) {
+          arrayIndex = index
+        }
+      })
+      this.$emit('changedSelected', {
+        arrayIndex,
       })
     },
   },
