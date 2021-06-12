@@ -56,6 +56,7 @@ export default {
         name: null,
         search: '',
       },
+      oldSelectedType: null,
       imageablesList: [],
       imageablesIds: [],
     }
@@ -84,15 +85,11 @@ export default {
       })
     },
     handleSelect() {
-      let arrayIndex = -1
-      this.options.forEach((element, index) => {
-        if (element.value?.name === this.selectedType.name) {
-          arrayIndex = index
-        }
-      })
       this.$emit('changedSelected', {
-        arrayIndex,
+        newType: this.selectedType,
+        oldType: this.oldSelectedType,
       })
+      this.oldSelectedType = this.selectedType
     },
   },
 }
