@@ -1,6 +1,13 @@
 <template>
-  <b-card class="mb-2">
-    <p>Избиранe на подвижен състав:</p>
+  <b-card v-if="enabled" class="mb-2">
+    <div class="d-flex justify-content-between">
+      <p>Избиранe на подвижен състав:</p>
+      <p>
+        <b-button v-if="canBeClosed" variant="outline" @click="handleClose"
+          >X</b-button
+        >
+      </p>
+    </div>
     <b-input-group class="d-block d-lg-flex mb-2">
       <template #prepend
         ><b-form-select
@@ -49,6 +56,16 @@ export default {
       type: Array,
       required: true,
     },
+    enabled: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
+    canBeClosed: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   data() {
     return {
@@ -90,6 +107,12 @@ export default {
         oldType: this.oldSelectedType,
       })
       this.oldSelectedType = this.selectedType
+    },
+    handleClose() {
+      this.$emit('close', {
+        type: this.selectedType.name,
+        items: [],
+      })
     },
   },
 }

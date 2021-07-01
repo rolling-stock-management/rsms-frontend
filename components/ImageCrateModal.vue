@@ -51,10 +51,25 @@
         ></b-form-file>
       </b-form-group>
       <SearchByTypeWithList
+        v-for="index in options.length - 1"
+        :key="index"
         :options="options"
+        :enabled="index <= searchFieldsCount"
+        :can-be-closed="searchFieldsCount != 1"
         @changedSelected="updateOptions"
+        @close="handleClose"
+        @addNew="handleAdd"
       ></SearchByTypeWithList>
-      <!-- TODO: Dynamically add new instances of the component -->
+      <div class="d-flex justify-content-center">
+        <b-button
+          variant="outline-success"
+          class="mt-2"
+          pill
+          :disabled="searchFieldsCount > options.length - 2"
+          @click="handleAdd"
+          >+</b-button
+        >
+      </div>
     </b-form>
     <template #modal-footer="{ hide }">
       <b-button type="button" variant="outline-danger" @click="hide('forget')"
@@ -106,6 +121,7 @@ export default {
           disabled: false,
         },
       ],
+      searchFieldsCount: 1,
     }
   },
   methods: {
@@ -132,6 +148,14 @@ export default {
           element.disabled = true
         }
       })
+    },
+    handleClose(event) {
+      this.searchFieldsCount -= 1
+      if (event.type !== null) this.form.imageables[event.type] = event.items
+    },
+    handleAdd() {
+      if (this.searchFieldsCount + 1 <= this.options.length - 1)
+        this.searchFieldsCount += 1
     },
   },
 }
