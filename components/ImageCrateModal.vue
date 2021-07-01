@@ -132,8 +132,7 @@ export default {
       fd.append('title', this.form.title)
       fd.append('date', this.form.date)
       fd.append('description', this.form.description)
-      fd.append('imageables', this.form.imageables)
-      // TODO: Set up store for images.
+      fd.append('imageables', JSON.stringify(this.form.imageables))
       await this.$store.dispatch('images/createImage', fd)
     },
     updateOptions(event) {
