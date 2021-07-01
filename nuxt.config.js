@@ -37,6 +37,7 @@ export default {
     '~/plugins/TrainService.js',
     '~/plugins/RollingStockTrainService.js',
     '~/plugins/PassengerReportService.js',
+    '~/plugins/ImageService.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
