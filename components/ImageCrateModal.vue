@@ -57,6 +57,7 @@
         :enabled="index <= searchFieldsCount"
         :can-be-closed="searchFieldsCount != 1"
         @changedSelected="updateOptions"
+        @updateArray="handleImageableChoice"
         @close="handleClose"
         @addNew="handleAdd"
       ></SearchByTypeWithList>
@@ -156,6 +157,9 @@ export default {
     handleAdd() {
       if (this.searchFieldsCount + 1 <= this.options.length - 1)
         this.searchFieldsCount += 1
+    },
+    handleImageableChoice(event) {
+      this.form.imageables[event.type] = event.items
     },
   },
 }
