@@ -3,9 +3,6 @@ export default function ({ $axios }, inject) {
     getImages(page) {
       return $axios.get('/images?page=' + page)
     },
-    getImagesNoPagination() {
-      return $axios.get('/images?no-pagination=1')
-    },
     getImage(id) {
       return $axios.get('/images/' + id)
     },
@@ -16,7 +13,7 @@ export default function ({ $axios }, inject) {
       return $axios.patch('/images/' + id, form)
     },
     deleteImage(id) {
-      return $axios.delete('images/' + id)
+      return $axios.delete('/images/' + id)
     },
   }
 
