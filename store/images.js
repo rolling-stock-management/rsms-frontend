@@ -8,8 +8,16 @@ export const state = () => ({
   },
 })
 export const mutations = {
-  SET_IMAGES(state, images) {
-    state.images = images.data
+  SET_IMAGES(state, { images, chunkSize }) {
+    const imagesArr = images.data
+    const result = []
+
+    for (let i = 0; i < imagesArr.length; i += chunkSize) {
+      result.push(imagesArr.slice(i, i + chunkSize))
+    }
+
+    state.images = result
+
     state.pagination.currentPage = images.meta ? images.meta.current_page : null
     state.pagination.totalPages = images.meta ? images.meta.last_page : null
     state.imagesCount = images.meta ? images.meta.total : state.images.length
@@ -28,9 +36,9 @@ export const mutations = {
   },
 }
 export const actions = {
-  fetchImages({ commit }, page) {
+  fetchImages({ commit }, { page, chunkSize }) {
     return this.$ImageService.getImages(page).then((response) => {
-      commit('SET_IMAGES', response.data)
+      commit('SET_IMAGES', { images: response.data, chunkSize })
     })
   },
   fetchImageById({ commit, getters, state }, id) {
